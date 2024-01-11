@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://frfpwgjjrgm0"]
+
+[ext_resource type="Script" path="res://scripts/unit.gd" id="1_3brai"]
+[ext_resource type="Texture2D" uid="uid://bny2v4g2gurwt" path="res://sprites/test_characters1.png" id="2_hsvbx"]
+[ext_resource type="Resource" uid="uid://bxak2525e7pow" path="res://units/default.tres" id="2_yq1iq"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i6nn0"]
+radius = 32.0
+height = 128.0
+
+[node name="Unit" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_3brai")
+unit_stats = ExtResource("2_yq1iq")
+
+[node name="UnitCollider" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_i6nn0")
+
+[node name="UnitSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_hsvbx")
+
+[node name="UnitEquipment" type="Node2D" parent="."]
+
+[node name="UnitWeapon" type="Node2D" parent="UnitEquipment"]
+
+[node name="PositionFlags" type="Node2D" parent="."]
+
+[node name="SelectorPosition" type="Node2D" parent="PositionFlags"]
+position = Vector2(2.08165e-12, -96)
+
+[node name="AttackPosition0" type="Node2D" parent="PositionFlags"]
+position = Vector2(96, 2.08165e-12)
+
+[node name="ActivationPosition" type="Node2D" parent="PositionFlags"]
+position = Vector2(2.08165e-12, 64)

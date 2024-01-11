@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bws8y7ibltpkl"]
+
+[ext_resource type="Script" path="res://scripts/action_button.gd" id="1_gaxq5"]
+[ext_resource type="Texture2D" uid="uid://crsmsgedd1qy5" path="res://sprites/action_icons1.png" id="1_wq7lx"]
+
+[node name="ActionButton" type="PanelContainer"]
+script = ExtResource("1_gaxq5")
+
+[node name="ActionSelect" type="Button" parent="."]
+custom_minimum_size = Vector2(384, 64)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "action_1"
+icon = ExtResource("1_wq7lx")
+
+[connection signal="button_up" from="ActionSelect" to="." method="_on_action_select_button_up"]
+[connection signal="pressed" from="ActionSelect" to="." method="_on_action_select_pressed"]

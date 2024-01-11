@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=2 format=3 uid="uid://brr65fr10grvq"]
+
+[ext_resource type="Script" path="res://scripts/ability.gd" id="1_wytnu"]
+
+[resource]
+script = ExtResource("1_wytnu")
+damage = 10
+hit = 75

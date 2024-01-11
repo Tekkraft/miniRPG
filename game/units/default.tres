@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="UnitStats" load_steps=2 format=3 uid="uid://bxak2525e7pow"]
+
+[ext_resource type="Script" path="res://scripts/unit_stats.gd" id="1_iongd"]
+
+[resource]
+script = ExtResource("1_iongd")
+max_hp = 120
+current_exp = 0
+current_level = 1
+stat_dict = {
+"AGI": 10,
+"DEF": 10,
+"DEX": 10,
+"FOR": 10,
+"INT": 10,
+"RES": 10,
+"STR": 10
+}

@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://e66swi0au3c0"]
+
+[ext_resource type="PackedScene" uid="uid://cjykhvfjnaf76" path="res://scenes/ui/battle_ui.tscn" id="1_ayadb"]
+[ext_resource type="Script" path="res://scripts/battle_handler.gd" id="1_mdk2e"]
+[ext_resource type="PackedScene" uid="uid://kx7w17fgiih0" path="res://scenes/ui/selector.tscn" id="3_3lbpi"]
+[ext_resource type="Script" path="res://scripts/initative_queue.gd" id="4_rjytb"]
+[ext_resource type="Texture2D" uid="uid://j6nogmgo8x8p" path="res://sprites/activation_marker.png" id="5_b5ojb"]
+
+[node name="BattleScene" type="Node2D"]
+script = ExtResource("1_mdk2e")
+
+[node name="BattleUI" parent="." instance=ExtResource("1_ayadb")]
+
+[node name="PlayerUnits" type="Node2D" parent="."]
+position = Vector2(640, 540)
+
+[node name="EnemyUnits" type="Node2D" parent="."]
+position = Vector2(1280, 540)
+
+[node name="Selector" parent="." instance=ExtResource("3_3lbpi")]
+
+[node name="InitativeQueue" type="Node" parent="."]
+script = ExtResource("4_rjytb")
+
+[node name="ActivationMarker" type="Sprite2D" parent="."]
+texture = ExtResource("5_b5ojb")

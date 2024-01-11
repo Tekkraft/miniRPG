@@ -1,0 +1,135 @@
+[gd_scene load_steps=6 format=3 uid="uid://cjykhvfjnaf76"]
+
+[ext_resource type="Script" path="res://scripts/battle_ui.gd" id="1_s0xbu"]
+[ext_resource type="Texture2D" uid="uid://crsmsgedd1qy5" path="res://sprites/action_icons1.png" id="2_mht14"]
+[ext_resource type="Texture2D" uid="uid://d08umiy1xmlpk" path="res://sprites/action_icons4.png" id="2_pjvdn"]
+[ext_resource type="Texture2D" uid="uid://in2nldoy5try" path="res://sprites/action_icons2.png" id="3_xung5"]
+[ext_resource type="Texture2D" uid="uid://cdx7mlm45esf0" path="res://sprites/action_icons3.png" id="4_7nb1t"]
+
+[node name="BattleUI" type="CanvasLayer"]
+script = ExtResource("1_s0xbu")
+
+[node name="MainUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UnitHealthContainer" type="PanelContainer" parent="MainUI"]
+layout_mode = 1
+offset_right = 520.0
+offset_bottom = 64.0
+
+[node name="UnitHealthList" type="VBoxContainer" parent="MainUI/UnitHealthContainer"]
+custom_minimum_size = Vector2(512, 2.08165e-12)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 4
+
+[node name="ActionsContainer" type="PanelContainer" parent="MainUI"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -72.0
+offset_right = 384.0
+grow_vertical = 0
+
+[node name="ActionsList" type="VBoxContainer" parent="MainUI/ActionsContainer"]
+custom_minimum_size = Vector2(384, 72)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 4
+
+[node name="CancelActions" type="VBoxContainer" parent="MainUI/ActionsContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="CancelButton" type="Button" parent="MainUI/ActionsContainer/CancelActions"]
+custom_minimum_size = Vector2(384, 64)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Cancel"
+icon = ExtResource("2_pjvdn")
+
+[node name="CombatActions" type="VBoxContainer" parent="MainUI/ActionsContainer"]
+visible = false
+custom_minimum_size = Vector2(384, 72)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 4
+
+[node name="UltimateButton" type="Button" parent="MainUI/ActionsContainer/CombatActions"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Ultimate"
+icon = ExtResource("3_xung5")
+
+[node name="AttackButton" type="Button" parent="MainUI/ActionsContainer/CombatActions"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Attack"
+icon = ExtResource("3_xung5")
+
+[node name="SkillButton" type="Button" parent="MainUI/ActionsContainer/CombatActions"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Skill"
+icon = ExtResource("3_xung5")
+
+[node name="DefendButton" type="Button" parent="MainUI/ActionsContainer/CombatActions"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Defend"
+icon = ExtResource("4_7nb1t")
+
+[node name="MoreButton" type="Button" parent="MainUI/ActionsContainer/CombatActions"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Other Actions"
+icon = ExtResource("2_pjvdn")
+
+[node name="MoreActions" type="VBoxContainer" parent="MainUI/ActionsContainer"]
+visible = false
+layout_mode = 2
+
+[node name="FightButton" type="Button" parent="MainUI/ActionsContainer/MoreActions"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Fight"
+icon = ExtResource("3_xung5")
+
+[node name="ItemButton" type="Button" parent="MainUI/ActionsContainer/MoreActions"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Item"
+icon = ExtResource("2_pjvdn")
+
+[node name="WaitButton" type="Button" parent="MainUI/ActionsContainer/MoreActions"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Wait"
+icon = ExtResource("2_mht14")
+
+[node name="EscapeButton" type="Button" parent="MainUI/ActionsContainer/MoreActions"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Escape"
+icon = ExtResource("2_pjvdn")
+
+[node name="AbilityContainer" type="ScrollContainer" parent="MainUI/ActionsContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 2.08165e-12)
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="MainUI/ActionsContainer/AbilityContainer"]
+layout_mode = 2
+columns = 4
+
+[connection signal="pressed" from="MainUI/ActionsContainer/CancelActions/CancelButton" to="." method="_on_cancel_selected"]

@@ -2,22 +2,21 @@ class_name BattleUI
 extends CanvasLayer
 
 signal buttonSelected
+signal actionCanceled
 signal basicAttackSelected
 signal abilityAttackSelected
 
 var unit_hp_bar = preload("res://scenes/ui/health_indicator.tscn")
 var action_button = preload("res://scenes/ui/action_button.tscn")
 
-var test = 0
+var last_menu_state = MenuState.COMBAT
 
-var MainActions = [
-	"Attack",
-	"Skill",
-	"Magic",
-	"Defend",
-	"Wait",
-	"Escape"
-]
+enum MenuState {
+	COMBAT,
+	EXTRA,
+	SKILL,
+	ITEM
+}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -35,45 +34,88 @@ func create_hp_bar(unit):
 	get_node("MainUI/UnitHealthContainer/UnitHealthList").add_child(new_hp_bar)
 
 
-func create_actions(actions):
-	var action_list = []
-	for action in actions:
-		var new_action_button = action_button.instantiate() as ActionButton
-		new_action_button.setup(action)
-		get_node("MainUI/ActionsContainer/ActionsList").add_child(new_action_button)
-		action_list.append([action, new_action_button])
-	return action_list
+func add_abilities(abilities):
+	var abilities_list = []
+	for ability in abilities:
+		var new_ability_button = action_button.instantiate() as ActionButton
+		new_ability_button.setup(ability)
+		get_node("MainUI/ActionsContainer/AbilityContainer/AbilityGrid").add_child(new_ability_button)
+		abilities_list.append([ability, new_ability_button])
+	return abilities_list
 
 
-func create_standard_actions():
-	var action_list = []
-	for action in MainActions:
-		var new_action_button = action_button.instantiate() as ActionButton
-		new_action_button.setup(action)
-		new_action_button.actionSelected.connect(_on_sub_button_pressed)
-		get_node("MainUI/ActionsContainer/ActionsList").add_child(new_action_button)
-		action_list.append([action, new_action_button])
-	return action_list
+func show_cancel_actions():
+	hide_all_actions()
+	get_node("MainUI/ActionsContainer/CancelActions").show()
 
 
-func show_standard_actions():
-	(get_node("MainUI/ActionsContainer") as PanelContainer).show()
+func show_combat_actions():
+	last_menu_state = MenuState.COMBAT
+	hide_all_actions()
+	get_node("MainUI/ActionsContainer/CombatActions").show()
 
 
-func hide_actions():
-	(get_node("MainUI/ActionsContainer") as PanelContainer).hide()
+func show_extra_actions():
+	last_menu_state = MenuState.EXTRA
+	hide_all_actions()
+	get_node("MainUI/ActionsContainer/ExtraActions").show()
 
 
-# Passes a signal further upstream if needed or change ui if not
-# Encode args as [action_type, OTHER_ARGS*]
-func _on_sub_button_pressed(data):
-	hide_actions()
-	if data[0] == "MainAction" and data[1] == "Attack":
-		print("basic")
-		emit_signal("basicAttackSelected", data)
-	else:
-		emit_signal("buttonSelected", data)
+func hide_all_actions():
+	get_node("MainUI/ActionsContainer/CancelActions").hide()
+	get_node("MainUI/ActionsContainer/CombatActions").hide()
+	get_node("MainUI/ActionsContainer/ExtraActions").hide()
+	get_node("MainUI/ActionsContainer/AbilityContainer").hide()
 
 
-func _on_cancel_selected():
+# Preset action buttons
+
+func _on_cancel_button_pressed():
+	emit_signal("actionCanceled")
+	match last_menu_state:
+		MenuState.COMBAT:
+			show_combat_actions()
+		MenuState.EXTRA:
+			show_extra_actions()
+		MenuState.SKILL:
+			pass
+		MenuState.ITEM:
+			pass
+	
+
+
+func _on_ultimate_button_pressed():
+	pass # Replace with function body.
+
+
+func _on_attack_button_pressed():
+	emit_signal("basicAttackSelected")
+	show_cancel_actions()
+
+
+func _on_skill_button_pressed():
+	pass # Replace with function body.
+
+
+func _on_defend_button_pressed():
+	pass # Replace with function body.
+
+
+func _on_more_button_pressed():
+	pass # Replace with function body.
+
+
+func _on_fight_button_pressed():
+	pass # Replace with function body.
+
+
+func _on_item_button_pressed():
+	pass # Replace with function body.
+
+
+func _on_wait_button_pressed():
+	pass # Replace with function body.
+
+
+func _on_escape_button_pressed():
 	pass # Replace with function body.

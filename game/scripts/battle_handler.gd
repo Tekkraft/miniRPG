@@ -23,11 +23,8 @@ func _ready():
 	load_unit(test_stats, false)
 	space_units(get_node("PlayerUnits"))
 	space_units(get_node("EnemyUnits"))
-	(get_node("BattleUI") as BattleUI).create_standard_actions()
 	(get_node("BattleUI") as BattleUI).basicAttackSelected.connect(_on_basic_attack)
 	(get_node("BattleUI") as BattleUI).buttonSelected.connect(_on_battle_action_selected)
-	
-	(get_node("BattleUI") as BattleUI).hide_actions()
 	
 	# Start the initative queue
 	(get_node("InitativeQueue") as InitiativeQueue).step_until_ready()
@@ -43,6 +40,9 @@ func _process(delta):
 
 
 func _input(event):
+	if selecting and event.is_action_pressed("battle_cancel"):
+		selecting = false
+	
 	if selecting and event.is_action_pressed("battle_select"):
 		var target = find_closest_unit()
 		if not target == null:
@@ -143,7 +143,7 @@ func set_active_unit(unit : Unit):
 	#marker.show()
 	marker.position = unit.get_node("PositionFlags/ActivationPosition").global_position
 	if unit.is_player():
-		(get_node("BattleUI") as BattleUI).show_standard_actions()
+		(get_node("BattleUI") as BattleUI).show_combat_actions()
 	else:
 		ai_step()
 
@@ -158,10 +158,11 @@ func ai_step():
 func _on_action_activated():
 	selected_unit = null
 	hide_selector()
+	(get_node("BattleUI") as BattleUI).hide_all_actions()
 	(get_node("InitativeQueue") as InitiativeQueue).step_until_ready()
 
 
-func _on_basic_attack(data):
+func _on_basic_attack():
 	set_targets(false)
 	await targetSelected
 	attack(active_unit, selected_unit, basic_attack)

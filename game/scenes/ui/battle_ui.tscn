@@ -30,21 +30,12 @@ size_flags_vertical = 4
 theme_override_constants/separation = 4
 
 [node name="ActionsContainer" type="PanelContainer" parent="MainUI"]
-custom_minimum_size = Vector2(32, 32)
+custom_minimum_size = Vector2(2.08165e-12, 2.08165e-12)
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -72.0
-offset_right = 384.0
 grow_vertical = 0
-
-[node name="ActionsList" type="VBoxContainer" parent="MainUI/ActionsContainer"]
-custom_minimum_size = Vector2(384, 72)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_constants/separation = 4
 
 [node name="CancelActions" type="VBoxContainer" parent="MainUI/ActionsContainer"]
 visible = false
@@ -60,76 +51,95 @@ icon = ExtResource("2_pjvdn")
 
 [node name="CombatActions" type="VBoxContainer" parent="MainUI/ActionsContainer"]
 visible = false
-custom_minimum_size = Vector2(384, 72)
+custom_minimum_size = Vector2(2.08165e-12, 2.08165e-12)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 4
 
 [node name="UltimateButton" type="Button" parent="MainUI/ActionsContainer/CombatActions"]
+custom_minimum_size = Vector2(384, 64)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Ultimate"
 icon = ExtResource("3_xung5")
 
 [node name="AttackButton" type="Button" parent="MainUI/ActionsContainer/CombatActions"]
+custom_minimum_size = Vector2(384, 64)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Attack"
 icon = ExtResource("3_xung5")
 
 [node name="SkillButton" type="Button" parent="MainUI/ActionsContainer/CombatActions"]
+custom_minimum_size = Vector2(384, 64)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Skill"
 icon = ExtResource("3_xung5")
 
 [node name="DefendButton" type="Button" parent="MainUI/ActionsContainer/CombatActions"]
+custom_minimum_size = Vector2(384, 64)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Defend"
 icon = ExtResource("4_7nb1t")
 
 [node name="MoreButton" type="Button" parent="MainUI/ActionsContainer/CombatActions"]
+custom_minimum_size = Vector2(384, 64)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Other Actions"
 icon = ExtResource("2_pjvdn")
 
-[node name="MoreActions" type="VBoxContainer" parent="MainUI/ActionsContainer"]
+[node name="ExtraActions" type="VBoxContainer" parent="MainUI/ActionsContainer"]
 visible = false
 layout_mode = 2
 
-[node name="FightButton" type="Button" parent="MainUI/ActionsContainer/MoreActions"]
+[node name="FightButton" type="Button" parent="MainUI/ActionsContainer/ExtraActions"]
+custom_minimum_size = Vector2(384, 64)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Fight"
 icon = ExtResource("3_xung5")
 
-[node name="ItemButton" type="Button" parent="MainUI/ActionsContainer/MoreActions"]
+[node name="ItemButton" type="Button" parent="MainUI/ActionsContainer/ExtraActions"]
+custom_minimum_size = Vector2(384, 64)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Item"
 icon = ExtResource("2_pjvdn")
 
-[node name="WaitButton" type="Button" parent="MainUI/ActionsContainer/MoreActions"]
+[node name="WaitButton" type="Button" parent="MainUI/ActionsContainer/ExtraActions"]
+custom_minimum_size = Vector2(384, 64)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Wait"
 icon = ExtResource("2_mht14")
 
-[node name="EscapeButton" type="Button" parent="MainUI/ActionsContainer/MoreActions"]
+[node name="EscapeButton" type="Button" parent="MainUI/ActionsContainer/ExtraActions"]
+custom_minimum_size = Vector2(384, 64)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Escape"
 icon = ExtResource("2_pjvdn")
 
 [node name="AbilityContainer" type="ScrollContainer" parent="MainUI/ActionsContainer"]
+visible = false
 custom_minimum_size = Vector2(2.08165e-12, 2.08165e-12)
 layout_mode = 2
 
-[node name="GridContainer" type="GridContainer" parent="MainUI/ActionsContainer/AbilityContainer"]
+[node name="AbilityGrid" type="GridContainer" parent="MainUI/ActionsContainer/AbilityContainer"]
 layout_mode = 2
 columns = 4
 
-[connection signal="pressed" from="MainUI/ActionsContainer/CancelActions/CancelButton" to="." method="_on_cancel_selected"]
+[connection signal="pressed" from="MainUI/ActionsContainer/CancelActions/CancelButton" to="." method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="MainUI/ActionsContainer/CombatActions/UltimateButton" to="." method="_on_ultimate_button_pressed"]
+[connection signal="pressed" from="MainUI/ActionsContainer/CombatActions/AttackButton" to="." method="_on_attack_button_pressed"]
+[connection signal="pressed" from="MainUI/ActionsContainer/CombatActions/SkillButton" to="." method="_on_skill_button_pressed"]
+[connection signal="pressed" from="MainUI/ActionsContainer/CombatActions/DefendButton" to="." method="_on_defend_button_pressed"]
+[connection signal="pressed" from="MainUI/ActionsContainer/CombatActions/MoreButton" to="." method="_on_more_button_pressed"]
+[connection signal="pressed" from="MainUI/ActionsContainer/ExtraActions/FightButton" to="." method="_on_fight_button_pressed"]
+[connection signal="pressed" from="MainUI/ActionsContainer/ExtraActions/ItemButton" to="." method="_on_item_button_pressed"]
+[connection signal="pressed" from="MainUI/ActionsContainer/ExtraActions/WaitButton" to="." method="_on_wait_button_pressed"]
+[connection signal="pressed" from="MainUI/ActionsContainer/ExtraActions/EscapeButton" to="." method="_on_escape_button_pressed"]

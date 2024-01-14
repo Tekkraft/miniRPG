@@ -1,0 +1,2 @@
+class_name EnemyClass
+extends UnitClass

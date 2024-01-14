@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="UnitStats" load_steps=2 format=3 uid="uid://pshxldivfjne"]
+
+[ext_resource type="Script" path="res://scripts/unit_stats.gd" id="1_mnwh2"]
+
+[resource]
+script = ExtResource("1_mnwh2")
+unit_name = "M"
+max_hp = 100
+current_exp = 0
+current_level = 1
+stat_dict = {
+"AGI": 10,
+"DEF": 8,
+"DEX": 10,
+"INT": 14,
+"RES": 12,
+"STR": 6
+}
+personal_growths_dict = {
+"AGI": 1,
+"DEF": 1,
+"DEX": 2,
+"INT": 3,
+"RES": 2,
+"STR": 1
+}

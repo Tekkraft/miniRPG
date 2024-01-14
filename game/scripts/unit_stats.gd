@@ -2,12 +2,19 @@ class_name UnitStats
 extends Resource
 
 signal hpChanged
+signal energyChanged
 
-var hp = 120
-@export var max_hp = 120
+@export var unit_name : String
+@export var unit_icon : Texture2D
 
 @export var current_exp = 0
 @export var current_level = 1
+
+var hp = 100
+@export var max_hp = 100
+
+var energy = 5
+var max_energy = 10
 
 @export var stat_dict = {
 	"STR": 10, # Physical Damage
@@ -16,7 +23,16 @@ var hp = 120
 	"RES": 10, # Magical Defense
 	"DEX": 10, # Accuracy + Crit
 	"AGI": 10, # Initiative + Avoid/Crit Avoid
-	"FOR": 10  # Hitpoints
+}
+
+# Stats gained per level
+@export var personal_growths_dict = {
+	"STR": 1, # Physical Damage
+	"DEF": 1, # Physical Defense
+	"INT": 1, # Magical Damage
+	"RES": 1, # Magical Defense
+	"DEX": 1, # Accuracy + Crit
+	"AGI": 1, # Initiative + Avoid/Crit Avoid
 }
 
 
@@ -32,9 +48,26 @@ func get_stat(stat : String):
 
 func take_damage(damage):
 	hp -= damage
-	if hp <= 0:
-		hp = 0
+	hp = max(hp, 0)
 	emit_signal("hpChanged", hp)
+
+
+func take_healing(healing):
+	hp += healing
+	hp = min(hp, max_hp)
+	emit_signal("hpChanged", hp)
+
+
+func use_energy(amount):
+	energy -= amount
+	energy = max(energy, 0)
+	emit_signal("energyChanged", energy)
+
+
+func gain_energy(amount):
+	energy += amount
+	energy = min(energy, max_energy)
+	emit_signal("energyChanged", energy)
 
 
 func get_current_hp():
@@ -44,3 +77,6 @@ func get_current_hp():
 func get_max_hp():
 	return max_hp
 
+
+func get_hp_perc():
+	return float(hp)/max_hp

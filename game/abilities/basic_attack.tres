@@ -1,8 +1,27 @@
-[gd_resource type="Resource" script_class="Ability" load_steps=2 format=3 uid="uid://brr65fr10grvq"]
+[gd_resource type="Resource" script_class="Ability" load_steps=4 format=3 uid="uid://brr65fr10grvq"]
 
+[ext_resource type="Script" path="res://scripts/ability_step.gd" id="1_d2c56"]
 [ext_resource type="Script" path="res://scripts/ability.gd" id="1_wytnu"]
+
+[sub_resource type="Resource" id="Resource_p03m0"]
+Resource = null
+resource_path = "res://abilities/basic_attack.tres::Resource_p03m0"
+script = ExtResource("1_d2c56")
+step_type = 0
+conditions = []
+independent_hit = false
+hit_rate = 0
+damage = 10
+damage_type = 0
+healing = 0
+status = ""
+animation = ""
+time = 0.0
+comment = ""
 
 [resource]
 script = ExtResource("1_wytnu")
-damage = 10
+name = "Basic Attack"
 hit = 75
+ability_target = 2
+effects = Array[ExtResource("1_d2c56")]([SubResource("Resource_p03m0")])

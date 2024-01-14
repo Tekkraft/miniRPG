@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://oi3u421px615"]
+[gd_scene load_steps=4 format=3 uid="uid://oi3u421px615"]
 
 [ext_resource type="Script" path="res://scripts/health_indicator.gd" id="1_lgh4r"]
+[ext_resource type="Texture2D" uid="uid://vnptdw32t1hd" path="res://sprites/progress_bars_hp.png" id="2_qura5"]
+[ext_resource type="Texture2D" uid="uid://dqxbtri6rk3qm" path="res://sprites/progress_bars_energy.png" id="3_du285"]
 
 [node name="HealthIndicator" type="PanelContainer"]
 custom_minimum_size = Vector2(2.08165e-12, 64)
@@ -25,27 +27,36 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 
-[node name="HealthBar" type="ProgressBar" parent="UnitDataBox"]
+[node name="BarBox" type="VBoxContainer" parent="UnitDataBox"]
+layout_mode = 2
+
+[node name="HealthBar" type="TextureProgressBar" parent="UnitDataBox/BarBox"]
 custom_minimum_size = Vector2(320, 32)
 layout_mode = 2
 size_flags_vertical = 4
 value = 100.0
 allow_greater = true
-show_percentage = false
+texture_progress = ExtResource("2_qura5")
 
-[node name="HealthLabel" type="Label" parent="UnitDataBox/HealthBar"]
+[node name="HealthLabel" type="Label" parent="UnitDataBox/BarBox/HealthBar"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
+offset_left = 33.0
 offset_top = -11.5
-offset_right = 20.0
+offset_right = 95.0
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 16
 text = "999/999"
 horizontal_alignment = 1
+
+[node name="EnergyBar" type="TextureProgressBar" parent="UnitDataBox/BarBox"]
+layout_mode = 2
+max_value = 10.0
+value = 5.0
+texture_progress = ExtResource("3_du285")

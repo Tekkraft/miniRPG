@@ -12,8 +12,13 @@ config_version=5
 
 config/name="miniRPG"
 run/main_scene="res://scenes/game/battle_scene.tscn"
-config/features=PackedStringArray("4.1", "GL Compatibility")
+config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+PlayerParty="*res://scripts/autoloads/player_party.gd"
+DamageCalculator="*res://scripts/autoloads/damage_calculator.gd"
 
 [display]
 

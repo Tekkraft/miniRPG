@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cjykhvfjnaf76" path="res://scenes/ui/battle_ui.tscn" id="1_ayadb"]
 [ext_resource type="Script" path="res://scripts/battle_handler.gd" id="1_mdk2e"]
-[ext_resource type="PackedScene" uid="uid://kx7w17fgiih0" path="res://scenes/ui/selector.tscn" id="3_3lbpi"]
+[ext_resource type="Texture2D" uid="uid://b05b4625rrmth" path="res://sprites/selectors2.png" id="3_27rhs"]
 [ext_resource type="Script" path="res://scripts/initative_queue.gd" id="4_rjytb"]
 [ext_resource type="Texture2D" uid="uid://j6nogmgo8x8p" path="res://sprites/activation_marker.png" id="5_b5ojb"]
 
@@ -17,10 +17,16 @@ position = Vector2(640, 540)
 [node name="EnemyUnits" type="Node2D" parent="."]
 position = Vector2(1280, 540)
 
-[node name="Selector" parent="." instance=ExtResource("3_3lbpi")]
+[node name="Selector" type="Sprite2D" parent="."]
+texture = ExtResource("3_27rhs")
 
 [node name="InitativeQueue" type="Node" parent="."]
 script = ExtResource("4_rjytb")
 
 [node name="ActivationMarker" type="Sprite2D" parent="."]
 texture = ExtResource("5_b5ojb")
+
+[connection signal="actionCanceled" from="BattleUI" to="." method="_on_action_canceled"]
+[connection signal="basicAttackSelected" from="BattleUI" to="." method="_on_basic_attack"]
+[connection signal="skillMenuSelected" from="BattleUI" to="." method="_on_skill_menu_selected"]
+[connection signal="skillSelected" from="BattleUI" to="." method="_on_skill_selected"]

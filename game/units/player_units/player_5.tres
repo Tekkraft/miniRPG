@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="UnitStats" load_steps=2 format=3 uid="uid://b11s7pm0bu5pn"]
+
+[ext_resource type="Script" path="res://scripts/unit_stats.gd" id="1_ahgtp"]
+
+[resource]
+script = ExtResource("1_ahgtp")
+unit_name = "T"
+max_hp = 100
+current_exp = 0
+current_level = 1
+stat_dict = {
+"AGI": 14,
+"DEF": 8,
+"DEX": 12,
+"INT": 8,
+"RES": 8,
+"STR": 10
+}
+personal_growths_dict = {
+"AGI": 3,
+"DEF": 1,
+"DEX": 2,
+"INT": 1,
+"RES": 1,
+"STR": 2
+}

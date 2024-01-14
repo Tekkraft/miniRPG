@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Status" load_steps=2 format=3 uid="uid://bowsvjd8s58y4"]
+
+[ext_resource type="Script" path="res://scripts/status.gd" id="1_64f48"]
+
+[resource]
+script = ExtResource("1_64f48")
+status_name = "Staggered"
+status_description = "Unit is off-balance and has reduced hit and evasion."
+passive_effects = Array[Resource("res://scripts/status_step.gd")]([])
+start_of_turn_effects = Array[Resource("res://scripts/status_step.gd")]([])
+end_of_turn_effects = Array[Resource("res://scripts/status_step.gd")]([])

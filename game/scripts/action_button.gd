@@ -16,9 +16,9 @@ func _process(delta):
 
 
 func setup(new_action):
-	(get_node("ActionSelect") as Button).text = new_action
+	(get_node("ActionSelect") as Button).text = new_action.name
 	action = new_action
 
 
 func _on_action_select_pressed():
-	emit_signal("actionSelected", ["MainAction", action])
+	emit_signal("actionSelected", action)

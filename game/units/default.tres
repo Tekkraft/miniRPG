@@ -1,9 +1,12 @@
-[gd_resource type="Resource" script_class="UnitStats" load_steps=2 format=3 uid="uid://bxak2525e7pow"]
+[gd_resource type="Resource" script_class="UnitStats" load_steps=3 format=3 uid="uid://bxak2525e7pow"]
 
 [ext_resource type="Script" path="res://scripts/unit_stats.gd" id="1_iongd"]
+[ext_resource type="Texture2D" uid="uid://drwkgkbenm52g" path="res://sprites/character_icons.png" id="2_6704a"]
 
 [resource]
 script = ExtResource("1_iongd")
+unit_name = "Dummy"
+unit_icon = ExtResource("2_6704a")
 max_hp = 120
 current_exp = 0
 current_level = 1
@@ -15,4 +18,13 @@ stat_dict = {
 "INT": 10,
 "RES": 10,
 "STR": 10
+}
+personal_growths_dict = {
+"AGI": 1,
+"DEF": 1,
+"DEX": 1,
+"FOR": 1,
+"INT": 1,
+"RES": 1,
+"STR": 1
 }

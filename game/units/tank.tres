@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="UnitStats" load_steps=3 format=3 uid="uid://bgtwc6wk1mrqk"]
+
+[ext_resource type="Script" path="res://scripts/unit_stats.gd" id="1_7a8ig"]
+[ext_resource type="Texture2D" uid="uid://drwkgkbenm52g" path="res://sprites/character_icons.png" id="2_nwtjw"]
+
+[resource]
+script = ExtResource("1_7a8ig")
+unit_name = "Tank"
+unit_icon = ExtResource("2_nwtjw")
+max_hp = 100
+current_exp = 0
+current_level = 1
+stat_dict = {
+"AGI": 8,
+"DEF": 14,
+"DEX": 8,
+"FOR": 14,
+"INT": 8,
+"RES": 6,
+"STR": 12
+}
+personal_growths_dict = {
+"AGI": 1,
+"DEF": 2,
+"DEX": 1,
+"FOR": 3,
+"INT": 1,
+"RES": 1,
+"STR": 1
+}

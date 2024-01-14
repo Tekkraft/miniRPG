@@ -1,0 +1,60 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=8 format=3 uid="uid://c00p47dbyljjy"]
+
+[ext_resource type="Script" path="res://scripts/ability.gd" id="1_83bmk"]
+[ext_resource type="Script" path="res://scripts/effect_condition.gd" id="1_y208a"]
+[ext_resource type="Resource" uid="uid://bowsvjd8s58y4" path="res://statuses/stagger.tres" id="2_75683"]
+[ext_resource type="Script" path="res://scripts/ability_step.gd" id="2_phkym"]
+
+[sub_resource type="Resource" id="Resource_fli4y"]
+Resource = null
+resource_path = "res://abilities/warrior_abilities/heavy_attack.tres::Resource_fli4y"
+script = ExtResource("1_y208a")
+condition_type = 0
+check_user = null
+has_status = true
+statuses = Array[Resource("res://scripts/status.gd")]([ExtResource("2_75683")])
+above_threshold = true
+hp_percent = 0
+
+[sub_resource type="Resource" id="Resource_i4e38"]
+Resource = null
+resource_path = "res://abilities/warrior_abilities/heavy_attack.tres::Resource_i4e38"
+script = ExtResource("2_phkym")
+step_type = 7
+conditions = Array[ExtResource("1_y208a")]([SubResource("Resource_fli4y")])
+independent_hit = false
+hit_rate = 0
+damage = 0
+damage_type = 0
+healing = 0
+charge = 0
+animation = ""
+time = 0.0
+comment = ""
+boost_amount = 10
+
+[sub_resource type="Resource" id="Resource_t17b1"]
+Resource = null
+resource_path = "res://abilities/warrior_abilities/heavy_attack.tres::Resource_t17b1"
+script = ExtResource("2_phkym")
+step_type = 0
+conditions = Array[ExtResource("1_y208a")]([])
+independent_hit = false
+hit_rate = 0
+damage = 10
+damage_type = 0
+healing = 0
+charge = 0
+animation = ""
+time = 0.0
+comment = ""
+boost_amount = null
+
+[resource]
+script = ExtResource("1_83bmk")
+name = "Heavy Attack"
+description = "Swing with extra power. Doubled base damage if target is staggered."
+energy_cost = 1
+hit = 80
+ability_target = 2
+effects = Array[ExtResource("2_phkym")]([SubResource("Resource_i4e38"), SubResource("Resource_t17b1")])

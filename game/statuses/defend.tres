@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="Status" load_steps=5 format=3 uid="uid://blx71gg1knf7u"]
+
+[ext_resource type="Script" path="res://scripts/status_step.gd" id="1_blrwf"]
+[ext_resource type="Script" path="res://scripts/status.gd" id="1_hd662"]
+[ext_resource type="Texture2D" uid="uid://41s2qtqnsamt" path="res://sprites/status_icons_defend.png" id="3_f34du"]
+
+[sub_resource type="Resource" id="Resource_7ecrn"]
+Resource = null
+resource_path = "res://statuses/defend.tres::Resource_7ecrn"
+script = ExtResource("1_blrwf")
+timed_effect = 0
+stat_changes = {
+"AGI": 0,
+"DEF": 0,
+"DEX": 0,
+"INT": 0,
+"RES": 0,
+"STR": 0
+}
+calc_stat_changes = {
+"AVO": 0,
+"CRT": 0,
+"EVA": 0,
+"HIT": 0
+}
+damage_per_turn = 0
+healing_per_turn = 0
+
+[resource]
+script = ExtResource("1_hd662")
+status_name = "Defended"
+status_icon = ExtResource("3_f34du")
+status_description = "The unit is defending and takes 25% less damage from all sources."
+effects = Array[ExtResource("1_blrwf")]([SubResource("Resource_7ecrn")])

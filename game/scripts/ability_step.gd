@@ -9,11 +9,15 @@ enum StepType {
 	STATUS,
 	ANIMATION,
 	WAIT,
-	COMMENT,
-	BOOST
+	COMMENT
 }
 
-const preserved_fields = ["step_type", "conditions", "independent_hit", "hit_rate"]
+enum StepTarget {
+	USER,
+	TARGET
+}
+
+const preserved_fields = ["step_type", "step_target", "conditions", "independent_hit", "hit_rate"]
 
 # Shared variables
 @export var step_type := StepType.DAMAGE:
@@ -22,6 +26,7 @@ const preserved_fields = ["step_type", "conditions", "independent_hit", "hit_rat
 		notify_property_list_changed()
 
 @export var conditions : Array[EffectCondition]
+@export var step_target = StepTarget.TARGET
 
 @export var independent_hit := false:
 	set(value):
@@ -39,12 +44,13 @@ const preserved_fields = ["step_type", "conditions", "independent_hit", "hit_rat
 @export var healing : int
 
 
-# Healing step variables
+# Charge step variables
 @export var charge : int
 
 
 # Status step variables
 @export var status : Status
+@export var temp_status = false
 @export var status_duration : int
 
 
@@ -58,10 +64,6 @@ const preserved_fields = ["step_type", "conditions", "independent_hit", "hit_rat
 
 # Comment step variables
 @export_multiline var comment : String
-
-
-# Boost step variables
-@export var boost_amount : int
 
 
 func _validate_property(property: Dictionary):
@@ -82,7 +84,7 @@ func _validate_property(property: Dictionary):
 				if property.name not in ["charge"]:
 					property.usage = PROPERTY_USAGE_NO_EDITOR
 			StepType.STATUS:
-				if property.name not in ["status", "status_duration"]:
+				if property.name not in ["status", "temp_status", "status_duration"]:
 					property.usage = PROPERTY_USAGE_NO_EDITOR
 			StepType.ANIMATION:
 				if property.name not in ["animation"]:
@@ -92,8 +94,5 @@ func _validate_property(property: Dictionary):
 					property.usage = PROPERTY_USAGE_NO_EDITOR
 			StepType.COMMENT:
 				if property.name not in ["comment"]:
-					property.usage = PROPERTY_USAGE_NO_EDITOR
-			StepType.BOOST:
-				if property.name not in ["boost_amount"]:
 					property.usage = PROPERTY_USAGE_NO_EDITOR
 	

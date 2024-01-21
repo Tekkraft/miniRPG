@@ -1,11 +1,27 @@
-[gd_resource type="Resource" script_class="Status" load_steps=2 format=3 uid="uid://bowsvjd8s58y4"]
+[gd_resource type="Resource" script_class="Status" load_steps=5 format=3 uid="uid://bowsvjd8s58y4"]
 
 [ext_resource type="Script" path="res://scripts/status.gd" id="1_64f48"]
+[ext_resource type="Script" path="res://scripts/status_step.gd" id="1_k3fan"]
+[ext_resource type="Texture2D" uid="uid://bdjk70eqqm7u0" path="res://sprites/status_icons_stagger.png" id="3_k4i83"]
+
+[sub_resource type="Resource" id="Resource_epd66"]
+Resource = null
+resource_path = "res://statuses/stagger.tres::Resource_epd66"
+script = ExtResource("1_k3fan")
+timed_effect = 0
+calc_stat_changes = {
+"AVO": 0,
+"CRT": 0,
+"EVA": 0,
+"HIT": 0
+}
+damage_multiplier = 0.0
+damage_per_turn = 0
+healing_per_turn = 0
 
 [resource]
 script = ExtResource("1_64f48")
 status_name = "Staggered"
-status_description = "Unit is off-balance and has reduced hit and evasion."
-passive_effects = Array[Resource("res://scripts/status_step.gd")]([])
-start_of_turn_effects = Array[Resource("res://scripts/status_step.gd")]([])
-end_of_turn_effects = Array[Resource("res://scripts/status_step.gd")]([])
+status_icon = ExtResource("3_k4i83")
+status_description = "Unit is off-balance and has reduced hit and avoid."
+effects = Array[ExtResource("1_k3fan")]([SubResource("Resource_epd66")])

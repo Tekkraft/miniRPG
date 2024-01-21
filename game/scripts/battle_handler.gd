@@ -32,10 +32,10 @@ var selection_targets = []
 
 func temp_preload():
 	var unit0 = (load("res://scenes/game/unit.tscn") as PackedScene).instantiate() as Unit
-	unit0.setup(load("res://units/player_units/player_0.tres"), load("res://classes/warrior.tres"), true)
+	unit0.setup(load("res://units/player_units/player_0.tres"), load("res://classes/character_class/warrior.tres"), true)
 	PlayerParty.new_unit(unit0, true)
 	var unit1 = (load("res://scenes/game/unit.tscn") as PackedScene).instantiate() as Unit
-	unit1.setup(load("res://units/player_units/player_1.tres"), load("res://classes/warrior.tres"), true)
+	unit1.setup(load("res://units/player_units/player_1.tres"), load("res://classes/character_class/knight.tres"), true)
 	PlayerParty.new_unit(unit1, true)
 
 # Called when the node enters the scene tree for the first time.
@@ -49,11 +49,8 @@ func _ready():
 	load_unit(test_stats, false)
 	space_units(get_node("PlayerUnits"))
 	space_units(get_node("EnemyUnits"))
-	(get_node("BattleUI") as BattleUI).buttonSelected.connect(_on_battle_action_selected)
 	
-	# Start the initative queue
-	(get_node("InitativeQueue") as InitiativeQueue).step_until_ready()
-	
+	change_state(BattleState.IDLE)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -104,7 +101,7 @@ func load_party():
 
 
 # Create new units and assign them to the correct teams
-func load_unit(stats : UnitStats, player : bool):
+func load_unit(stats : UnitData, player : bool):
 	var new_unit = unit_obj.instantiate() as Unit
 	new_unit.setup(stats, load("res://classes/warrior.tres"), player)
 	if player:
@@ -113,6 +110,7 @@ func load_unit(stats : UnitStats, player : bool):
 	else:
 		get_node("EnemyUnits").add_child(new_unit)
 		new_unit.apply_scale(Vector2(-1,1))
+		new_unit.get_node("StatusBox").apply_scale(Vector2(-1,1))
 	(get_node("InitativeQueue") as InitiativeQueue).add_to_initiative(new_unit)
 	return new_unit
 
@@ -135,21 +133,28 @@ func kill_unit(unit : Unit):
 
 func damage_step(attacker : Unit, defender : Unit, ability_step : AbilityStep, boost : int):
 	if ability_step.independent_hit:
-		var hit_roll = randi_range(1, 100)
-		var hit_value = ability_step.hit_rate
-		if hit_roll > hit_value:
+		if not check_hit(attacker, defender, ability_step.hit_rate, true):
 			return
 		
-	var base_dmg = attacker.unit_stats.get_stat("STR") + ability_step.damage
-	var calc_dmg = base_dmg - defender.unit_stats.get_stat("DEF")
+	var base_dmg = attacker.unit_data.get_stat("STR") + ability_step.damage
+	var attack_multiplier = attacker.get_damage_dealt_multiplier()
+	base_dmg *= attack_multiplier
+	print("*" + str(attack_multiplier))
+	var defense_multiplier = defender.get_damage_taken_multiplier()
+	base_dmg *= defense_multiplier
+	
+	var calc_dmg = base_dmg - defender.unit_data.get_stat("DEF")
 	calc_dmg = max(calc_dmg, 0)
 	
-	var crit_roll = randi_range(1, 100)
-	var crit_value = attacker.unit_stats.get_stat("DEX")
-	if crit_roll <= crit_value:
+	# NOTE: Possibly add ability/step crit rates?
+	if check_crit(attacker, defender, 0):
 		calc_dmg *= 3
 	
-	defender.unit_stats.take_damage(calc_dmg)
+	defender.unit_data.take_damage(calc_dmg)
+	
+	print(attacker.unit_data.unit_name)
+	print(">>" + str(attacker.unit_data.get_stat("STR") + ability_step.damage))
+	print(">" + str(calc_dmg))
 	
 	if defender.is_dead():
 		kill_unit(defender)
@@ -157,24 +162,51 @@ func damage_step(attacker : Unit, defender : Unit, ability_step : AbilityStep, b
 
 func healing_step(healer : Unit, target : Unit, ability_step : AbilityStep, boost : int):
 	if ability_step.independent_hit:
-		var hit_roll = randi_range(1, 100)
-		var hit_value = ability_step.hit_rate
-		if hit_roll > hit_value:
+		if not check_hit(healer, target, ability_step.hit_rate, true):
 			return
 		
-	var base_heal = healer.unit_stats.get_stat("INT") + ability_step.healing
+	var base_heal = healer.unit_data.get_stat("INT") + ability_step.healing
 	
-	target.unit_stats.take_healing(base_heal)
+	target.unit_data.take_healing(base_heal)
+
+
+func charge_step(origin : Unit, target : Unit, ability_step : AbilityStep):
+	if ability_step.independent_hit:
+		if not check_hit(origin, target, ability_step.hit_rate, true):
+			return
+		
+	var base_charge = ability_step.charge
+	
+	target.unit_data.gain_energy(base_charge)
 
 
 func status_step(origin : Unit, target : Unit, ability_step : AbilityStep):
 	if ability_step.independent_hit:
-		var hit_roll = randi_range(1, 100)
-		var hit_value = ability_step.hit_rate
-		if hit_roll > hit_value:
+		if not check_hit(origin, target, ability_step.hit_rate, true):
 			return
 	
-	target.add_status(ability_step.status, ability_step.status_duration)
+	if ability_step.temp_status:
+		target.add_temp_status(ability_step.status)
+	else:
+		target.add_status(ability_step.status, ability_step.status_duration)
+
+
+#NOTE: POSSIBLE CHANGE TO INDEPENDENT HIT RATES
+func check_hit(origin : Unit, target : Unit, hit_rate : int, independent : bool):
+	var hit_roll = randi_range(1, 100)
+	var hit_value = hit_rate
+	if not independent:
+		hit_value += origin.get_calc_stat("HIT")
+		hit_value -= target.get_calc_stat("AVO")
+	return hit_roll <= hit_value
+
+
+func check_crit(origin : Unit, target : Unit, crit_rate : int):
+	var crit_roll = randi_range(1, 100)
+	var crit_value = crit_rate
+	crit_value += origin.get_calc_stat("CRT")
+	crit_value -= target.get_calc_stat("EVA")
+	return crit_roll <= crit_value
 
 
 func resolve_action(origin : Unit, target : Unit, ability : Ability):
@@ -191,28 +223,32 @@ func resolve_action(origin : Unit, target : Unit, ability : Ability):
 		return
 	
 	#Check energy requirements:
-	if ability.energy_cost < origin.unit_stats.energy:
-		change_state(BattleState.TARGET)
+	if ability.energy_cost > origin.unit_data.energy:
+		revert_state_until([BattleState.AI, BattleState.COMBAT, BattleState.EXTRA, BattleState.SKILL])
 		return
 	
-	origin.unit_stats.use_energy(ability.energy_cost)
+	origin.unit_data.use_energy(ability.energy_cost)
 	
 	# Check accuracy
-	var hit_roll = randi_range(1, 100)
-	var hit_value = ability.hit
-	if hit_roll <= hit_value:
+	if check_hit(origin, target, ability.hit, false):
 		for ability_step in ability.effects:
 			# Check conditions:
 			if not is_ability_step_valid(origin, target, ability_step):
 				continue
 			
+			var effect_target = target
+			if ability_step.step_target == AbilityStep.StepTarget.USER:
+				effect_target = origin
+			
 			match ability_step.step_type:
 				AbilityStep.StepType.DAMAGE:
-					damage_step(origin, target, ability_step, ability_boost)
+					damage_step(origin, effect_target, ability_step, ability_boost)
 				AbilityStep.StepType.HEALING:
-					healing_step(origin, target, ability_step, ability_boost)
-				AbilityStep.StepType.BOOST:
-					ability_boost += ability_step.boost_amount
+					healing_step(origin, effect_target, ability_step, ability_boost)
+				AbilityStep.StepType.CHARGE:
+					charge_step(origin, effect_target, ability_step)
+				AbilityStep.StepType.STATUS:
+					status_step(origin, effect_target, ability_step)
 	
 	change_state(BattleState.CLEANUP)
 
@@ -246,10 +282,10 @@ func is_ability_step_valid(origin : Unit, target : Unit, ability_step : AbilityS
 							return false
 			EffectCondition.ConditionType.HP_THRESHOLD:
 				if condition.above_threshold:
-					if scan_target.unit_stats.get_hp_perc() < condition.hp_percent:
+					if scan_target.unit_data.get_hp_perc() < condition.hp_percent:
 						return false
 				else:
-					if scan_target.unit_stats.get_hp_perc() > condition.hp_percent:
+					if scan_target.unit_data.get_hp_perc() > condition.hp_percent:
 						return false
 	
 	return true
@@ -286,10 +322,15 @@ func hide_selector():
 
 
 func set_active_unit(unit : Unit):
+	if unit.is_dead():
+		change_state(BattleState.CLEANUP)
+		return
+	
 	active_unit = unit
 	var marker = get_node("ActivationMarker") as Node2D
-	#marker.show()
+	marker.show()
 	marker.position = unit.get_node("PositionFlags/ActivationPosition").global_position
+	start_turn()
 	if unit.is_player():
 		change_state(BattleState.COMBAT)
 	else:
@@ -304,11 +345,20 @@ func ai_step():
 
 
 func cleanup_turn():
+	end_turn()
 	selected_unit = null
 	active_ability = null
 	active_unit = null
 	selection_targets.clear()
 	change_state(BattleState.IDLE)
+
+
+func start_turn():
+	pass
+
+
+func end_turn():
+	active_unit.tick_down_status()
 
 
 func change_state(new_state : BattleState):
@@ -368,11 +418,15 @@ func _on_skill_menu_selected():
 	change_state(BattleState.SKILL)
 
 
+func _on_extra_menu_selected():
+	change_state(BattleState.EXTRA)
+
+
+func _on_combat_menu_selected():
+	change_state(BattleState.COMBAT)
+
+
 func _on_skill_selected(skill : Ability):
 	active_ability = skill
 	change_state(BattleState.TARGET)
 
-
-func _on_battle_action_selected(data):
-	pass
-	

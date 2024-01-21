@@ -1,37 +1,70 @@
-[gd_resource type="Resource" script_class="Ability" load_steps=8 format=3 uid="uid://c00p47dbyljjy"]
+[gd_resource type="Resource" script_class="Ability" load_steps=12 format=3 uid="uid://c00p47dbyljjy"]
 
 [ext_resource type="Script" path="res://scripts/ability.gd" id="1_83bmk"]
 [ext_resource type="Script" path="res://scripts/effect_condition.gd" id="1_y208a"]
 [ext_resource type="Resource" uid="uid://bowsvjd8s58y4" path="res://statuses/stagger.tres" id="2_75683"]
 [ext_resource type="Script" path="res://scripts/ability_step.gd" id="2_phkym"]
+[ext_resource type="Script" path="res://scripts/status_step.gd" id="4_ds20r"]
+[ext_resource type="Script" path="res://scripts/status.gd" id="5_avdjd"]
 
 [sub_resource type="Resource" id="Resource_fli4y"]
 Resource = null
 resource_path = "res://abilities/warrior_abilities/heavy_attack.tres::Resource_fli4y"
 script = ExtResource("1_y208a")
 condition_type = 0
-check_user = null
+check_user = false
 has_status = true
-statuses = Array[Resource("res://scripts/status.gd")]([ExtResource("2_75683")])
+statuses = Array[ExtResource("5_avdjd")]([ExtResource("2_75683")])
 above_threshold = true
 hp_percent = 0
+
+[sub_resource type="Resource" id="Resource_pk874"]
+Resource = null
+resource_path = "res://abilities/warrior_abilities/heavy_attack.tres::Resource_pk874"
+script = ExtResource("4_ds20r")
+timed_effect = 0
+stat_changes = {
+"AGI": 0,
+"DEF": 0,
+"DEX": 0,
+"INT": 0,
+"RES": 0,
+"STR": 0
+}
+calc_stat_changes = {
+"AVO": 0,
+"CRT": 0,
+"EVA": 0,
+"HIT": 0
+}
+damage_per_turn = 0
+healing_per_turn = 0
+
+[sub_resource type="Resource" id="Resource_7fhge"]
+script = ExtResource("5_avdjd")
+status_name = "Boosted"
+status_description = ""
+effects = Array[ExtResource("4_ds20r")]([SubResource("Resource_pk874")])
 
 [sub_resource type="Resource" id="Resource_i4e38"]
 Resource = null
 resource_path = "res://abilities/warrior_abilities/heavy_attack.tres::Resource_i4e38"
 script = ExtResource("2_phkym")
-step_type = 7
+step_type = 3
 conditions = Array[ExtResource("1_y208a")]([SubResource("Resource_fli4y")])
+step_target = 0
 independent_hit = false
 hit_rate = 0
 damage = 0
 damage_type = 0
 healing = 0
 charge = 0
+status = SubResource("Resource_7fhge")
+temp_status = true
+status_duration = 0
 animation = ""
 time = 0.0
 comment = ""
-boost_amount = 10
 
 [sub_resource type="Resource" id="Resource_t17b1"]
 Resource = null
@@ -39,16 +72,18 @@ resource_path = "res://abilities/warrior_abilities/heavy_attack.tres::Resource_t
 script = ExtResource("2_phkym")
 step_type = 0
 conditions = Array[ExtResource("1_y208a")]([])
+step_target = null
 independent_hit = false
 hit_rate = 0
 damage = 10
 damage_type = 0
 healing = 0
 charge = 0
+temp_status = null
+status_duration = 0
 animation = ""
 time = 0.0
 comment = ""
-boost_amount = null
 
 [resource]
 script = ExtResource("1_83bmk")

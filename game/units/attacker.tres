@@ -1,15 +1,15 @@
 [gd_resource type="Resource" script_class="UnitStats" load_steps=3 format=3 uid="uid://chxnjd4gyaadp"]
 
-[ext_resource type="Script" path="res://scripts/unit_stats.gd" id="1_sgqsv"]
+[ext_resource type="Script" path="res://scripts/unit_data.gd" id="1_sgqsv"]
 [ext_resource type="Texture2D" uid="uid://drwkgkbenm52g" path="res://sprites/character_icons.png" id="2_5uyqk"]
 
 [resource]
 script = ExtResource("1_sgqsv")
 unit_name = "Attacker"
 unit_icon = ExtResource("2_5uyqk")
-max_hp = 100
 current_exp = 0
 current_level = 1
+max_hp = 100
 stat_dict = {
 "AGI": 12,
 "DEF": 8,

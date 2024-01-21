@@ -28,5 +28,7 @@ texture = ExtResource("5_b5ojb")
 
 [connection signal="actionCanceled" from="BattleUI" to="." method="_on_action_canceled"]
 [connection signal="basicAttackSelected" from="BattleUI" to="." method="_on_basic_attack"]
+[connection signal="fightSelected" from="BattleUI" to="." method="_on_combat_menu_selected"]
+[connection signal="moreSelected" from="BattleUI" to="." method="_on_extra_menu_selected"]
 [connection signal="skillMenuSelected" from="BattleUI" to="." method="_on_skill_menu_selected"]
 [connection signal="skillSelected" from="BattleUI" to="." method="_on_skill_selected"]

@@ -1,13 +1,17 @@
-[gd_resource type="Resource" script_class="UnitStats" load_steps=2 format=3 uid="uid://bi4ba1lbts4vr"]
+[gd_resource type="Resource" script_class="UnitStats" load_steps=4 format=3 uid="uid://bi4ba1lbts4vr"]
 
-[ext_resource type="Script" path="res://scripts/unit_stats.gd" id="1_4i88d"]
+[ext_resource type="Script" path="res://scripts/unit_data.gd" id="1_4i88d"]
+[ext_resource type="Resource" uid="uid://coopbmj1c0xhm" path="res://classes/character_class/warrior.tres" id="2_1pxxf"]
+[ext_resource type="Texture2D" uid="uid://drwkgkbenm52g" path="res://sprites/character_icons.png" id="2_sjk6m"]
 
 [resource]
 script = ExtResource("1_4i88d")
-unit_name = "W"
-max_hp = 100
+unit_name = "Warrior"
+unit_icon = ExtResource("2_sjk6m")
+unit_class = ExtResource("2_1pxxf")
 current_exp = 0
 current_level = 1
+max_hp = 100
 stat_dict = {
 "AGI": 8,
 "DEF": 12,

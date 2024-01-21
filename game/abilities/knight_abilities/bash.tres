@@ -10,17 +10,18 @@ resource_path = "res://abilities/knight_abilities/bash.tres::Resource_q2ytb"
 script = ExtResource("1_s61d1")
 step_type = 0
 conditions = Array[Resource("res://scripts/effect_condition.gd")]([])
+step_target = 1
 independent_hit = false
 hit_rate = 0
 damage = 7
 damage_type = 0
 healing = 0
 charge = 0
-status_duration = null
+temp_status = false
+status_duration = 0
 animation = ""
 time = 0.0
 comment = ""
-boost_amount = 0
 
 [sub_resource type="Resource" id="Resource_t5h5u"]
 Resource = null
@@ -28,6 +29,7 @@ resource_path = "res://abilities/knight_abilities/bash.tres::Resource_t5h5u"
 script = ExtResource("1_s61d1")
 step_type = 3
 conditions = Array[Resource("res://scripts/effect_condition.gd")]([])
+step_target = 1
 independent_hit = false
 hit_rate = 0
 damage = 0
@@ -35,11 +37,11 @@ damage_type = 0
 healing = 0
 charge = 0
 status = ExtResource("2_ss748")
+temp_status = false
 status_duration = 3
 animation = ""
 time = 0.0
 comment = ""
-boost_amount = 0
 
 [resource]
 script = ExtResource("1_grwcu")

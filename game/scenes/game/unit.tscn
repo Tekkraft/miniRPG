@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/unit.gd" id="1_3brai"]
 [ext_resource type="Texture2D" uid="uid://bny2v4g2gurwt" path="res://sprites/test_characters1.png" id="2_hsvbx"]
-[ext_resource type="Resource" uid="uid://bxak2525e7pow" path="res://units/default.tres" id="2_yq1iq"]
+[ext_resource type="Script" path="res://scripts/status_container.gd" id="4_wk35o"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i6nn0"]
 radius = 32.0
@@ -11,7 +11,6 @@ height = 128.0
 [node name="Unit" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_3brai")
-unit_stats = ExtResource("2_yq1iq")
 
 [node name="UnitCollider" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_i6nn0")
@@ -33,3 +32,21 @@ position = Vector2(96, 2.08165e-12)
 
 [node name="ActivationPosition" type="Node2D" parent="PositionFlags"]
 position = Vector2(2.08165e-12, 64)
+
+[node name="StatusBox" type="Node2D" parent="."]
+position = Vector2(2.08165e-12, 96)
+scale = Vector2(0.75, 0.75)
+
+[node name="StatusContainer" type="HBoxContainer" parent="StatusBox"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_wk35o")

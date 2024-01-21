@@ -16,7 +16,7 @@ func remove_from_initiative(unit : Unit):
 func step_initiative():
 	#Advance initiative counts
 	for unit in initiative_order:
-		initiative_order[unit] += unit.unit_stats.get_stat("AGI")
+		initiative_order[unit] += unit.unit_data.get_stat("AGI")
 
 
 func next_active_unit():

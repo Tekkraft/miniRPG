@@ -1,14 +1,19 @@
 class_name BattleUI
 extends CanvasLayer
 
-signal buttonSelected
 signal actionCanceled
 signal basicAttackSelected
 signal skillMenuSelected
 signal skillSelected
+signal moreSelected
+signal fightSelected
+
 
 var unit_hp_bar = preload("res://scenes/ui/health_indicator.tscn")
 var action_button = preload("res://scenes/ui/action_button.tscn")
+
+var defend_skill = preload("res://abilities/menu_abilities/defend.tres")
+var wait_skill = preload("res://abilities/menu_abilities/wait.tres")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,10 +23,6 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
-	
-	#TEMP TEST
-	#if get_parent().current_state == BattleHandler.BattleState.SKILL:
-	#	get_node("MainUI/ActionsContainer/AbilityActions/AbilityContainer").resize()
 
 
 # Creates a new health bar and links it with the unit
@@ -129,15 +130,15 @@ func _on_skill_button_pressed():
 
 
 func _on_defend_button_pressed():
-	pass # Replace with function body.
+	emit_signal("skillSelected", defend_skill)
 
 
 func _on_more_button_pressed():
-	pass # Replace with function body.
+	emit_signal("moreSelected")
 
 
 func _on_fight_button_pressed():
-	pass # Replace with function body.
+	emit_signal("fightSelected")
 
 
 func _on_item_button_pressed():
@@ -145,7 +146,7 @@ func _on_item_button_pressed():
 
 
 func _on_wait_button_pressed():
-	pass # Replace with function body.
+	emit_signal("skillSelected", wait_skill)
 
 
 func _on_escape_button_pressed():

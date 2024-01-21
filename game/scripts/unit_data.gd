@@ -1,4 +1,4 @@
-class_name UnitStats
+class_name UnitData
 extends Resource
 
 signal hpChanged
@@ -6,6 +6,8 @@ signal energyChanged
 
 @export var unit_name : String
 @export var unit_icon : Texture2D
+
+@export var unit_class : UnitClass
 
 @export var current_exp = 0
 @export var current_level = 1
@@ -80,3 +82,4 @@ func get_max_hp():
 
 func get_hp_perc():
 	return float(hp)/max_hp
+

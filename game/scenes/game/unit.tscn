@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://frfpwgjjrgm0"]
+[gd_scene load_steps=6 format=3 uid="uid://frfpwgjjrgm0"]
 
 [ext_resource type="Script" path="res://scripts/unit.gd" id="1_3brai"]
 [ext_resource type="Texture2D" uid="uid://bny2v4g2gurwt" path="res://sprites/test_characters1.png" id="2_hsvbx"]
+[ext_resource type="Texture2D" uid="uid://vnptdw32t1hd" path="res://sprites/progress_bars_hp.png" id="4_deu3m"]
 [ext_resource type="Script" path="res://scripts/status_container.gd" id="4_wk35o"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i6nn0"]
@@ -25,7 +26,8 @@ texture = ExtResource("2_hsvbx")
 [node name="PositionFlags" type="Node2D" parent="."]
 
 [node name="SelectorPosition" type="Node2D" parent="PositionFlags"]
-position = Vector2(2.08165e-12, -96)
+position = Vector2(-64, 2.08165e-12)
+rotation = -1.5708
 
 [node name="AttackPosition0" type="Node2D" parent="PositionFlags"]
 position = Vector2(96, 2.08165e-12)
@@ -34,7 +36,7 @@ position = Vector2(96, 2.08165e-12)
 position = Vector2(2.08165e-12, 64)
 
 [node name="StatusBox" type="Node2D" parent="."]
-position = Vector2(2.08165e-12, 96)
+position = Vector2(2.08165e-12, -96)
 scale = Vector2(0.75, 0.75)
 
 [node name="StatusContainer" type="HBoxContainer" parent="StatusBox"]
@@ -50,3 +52,30 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4_wk35o")
+
+[node name="QuickDataBox" type="Node2D" parent="."]
+position = Vector2(2.08165e-12, 96)
+scale = Vector2(0.5, 0.5)
+
+[node name="QuickDataContainer" type="VBoxContainer" parent="QuickDataBox"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -29.5
+offset_right = 160.0
+offset_bottom = 29.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="QuickDataHealth" type="TextureProgressBar" parent="QuickDataBox/QuickDataContainer"]
+layout_mode = 2
+value = 50.0
+texture_progress = ExtResource("4_deu3m")
+
+[node name="QuickDataText" type="Label" parent="QuickDataBox/QuickDataContainer"]
+layout_mode = 2
+text = "Unit Name LV 5"
+horizontal_alignment = 1

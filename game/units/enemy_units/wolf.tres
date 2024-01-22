@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3 uid="uid://bpb0rquy27onm"]
+
+[ext_resource type="Script" path="res://scripts/enemy_data.gd" id="1_y17rl"]
+
+[resource]
+script = ExtResource("1_y17rl")
+spectrum_threshold = 5
+exp_yield = 25
+unit_name = "Wolf"
+current_exp = 0
+current_level = 1
+max_hp = 80
+stat_dict = {
+"AGI": 14,
+"DEF": 8,
+"DEX": 12,
+"INT": 4,
+"RES": 6,
+"STR": 9
+}
+personal_growths_dict = {
+"AGI": 2,
+"DEF": 0,
+"DEX": 1,
+"INT": 0,
+"RES": 0,
+"STR": 1
+}

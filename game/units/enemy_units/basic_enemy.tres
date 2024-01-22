@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3 uid="uid://ctbm2vxfe1a3j"]
+
+[ext_resource type="Script" path="res://scripts/enemy_data.gd" id="1_vpbt7"]
+
+[resource]
+script = ExtResource("1_vpbt7")
+spectrum_threshold = 5
+unit_name = ""
+current_exp = 0
+current_level = 1
+max_hp = 100
+stat_dict = {
+"AGI": 5,
+"DEF": 5,
+"DEX": 5,
+"INT": 5,
+"RES": 5,
+"STR": 5
+}
+personal_growths_dict = {
+"AGI": 1,
+"DEF": 1,
+"DEX": 1,
+"INT": 0,
+"RES": 0,
+"STR": 1
+}

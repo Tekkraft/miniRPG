@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EnemyClass" load_steps=2 format=3 uid="uid://eeqpk50g83bd"]
+
+[ext_resource type="Script" path="res://scripts/enemy_class.gd" id="1_54snq"]
+
+[resource]
+script = ExtResource("1_54snq")
+bonus_skills = Array[Resource]([null, null])
+name = null
+skills = null

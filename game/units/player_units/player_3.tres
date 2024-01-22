@@ -1,13 +1,13 @@
-[gd_resource type="Resource" script_class="UnitStats" load_steps=2 format=3 uid="uid://blow42tb6osbm"]
+[gd_resource type="Resource" script_class="UnitData" load_steps=2 format=3 uid="uid://blow42tb6osbm"]
 
 [ext_resource type="Script" path="res://scripts/unit_data.gd" id="1_wqp0s"]
 
 [resource]
 script = ExtResource("1_wqp0s")
-unit_name = "C"
-max_hp = 100
+unit_name = "Cleric"
 current_exp = 0
 current_level = 1
+max_hp = 110
 stat_dict = {
 "AGI": 8,
 "DEF": 10,

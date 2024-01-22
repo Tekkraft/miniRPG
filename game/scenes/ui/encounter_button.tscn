@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://bk3rvhejqtefi"]
+
+[ext_resource type="Script" path="res://scripts/encounter_button.gd" id="1_d6rv2"]
+
+[node name="EncounterButton" type="PanelContainer"]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.089
+offset_bottom = -0.120002
+size_flags_horizontal = 3
+script = ExtResource("1_d6rv2")
+
+[node name="EncounterDetailContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="EncounterSelect" type="Button" parent="EncounterDetailContainer"]
+custom_minimum_size = Vector2(384, 64)
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "encounter"
+
+[node name="EncounterLevel" type="Label" parent="EncounterDetailContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "LV: ###"
+
+[connection signal="pressed" from="EncounterDetailContainer/EncounterSelect" to="." method="_on_encounter_select_pressed"]

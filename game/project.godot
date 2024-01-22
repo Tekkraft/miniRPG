@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="miniRPG"
-run/main_scene="res://scenes/game/battle_scene.tscn"
+run/main_scene="res://scenes/game/main_menu_scene.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -19,6 +19,8 @@ config/icon="res://icon.svg"
 
 PlayerParty="*res://scripts/autoloads/player_party.gd"
 DamageCalculator="*res://scripts/autoloads/damage_calculator.gd"
+SceneHandler="*res://scripts/autoloads/scene_handler.gd"
+EncounterTable="*res://scripts/autoloads/encounter_table.gd"
 
 [display]
 

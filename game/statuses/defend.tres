@@ -9,20 +9,13 @@ Resource = null
 resource_path = "res://statuses/defend.tres::Resource_7ecrn"
 script = ExtResource("1_blrwf")
 timed_effect = 0
-stat_changes = {
-"AGI": 0,
-"DEF": 0,
-"DEX": 0,
-"INT": 0,
-"RES": 0,
-"STR": 0
-}
 calc_stat_changes = {
 "AVO": 0,
 "CRT": 0,
 "EVA": 0,
 "HIT": 0
 }
+damage_multiplier = 0.0
 damage_per_turn = 0
 healing_per_turn = 0
 

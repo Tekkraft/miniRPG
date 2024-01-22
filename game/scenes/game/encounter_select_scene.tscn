@@ -1,0 +1,53 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5rlcs3x3tcgx"]
+
+[ext_resource type="Script" path="res://scripts/encounter_select.gd" id="1_ybc68"]
+
+[node name="EncounterSelectScene" type="Node2D"]
+script = ExtResource("1_ybc68")
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="EncounterSelectUI" type="Control" parent="UILayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundPanel" type="Panel" parent="UILayer/EncounterSelectUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EncounterSelectText" type="Label" parent="UILayer/EncounterSelectUI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -417.0
+offset_top = 64.0
+offset_right = 417.0
+offset_bottom = 239.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 128
+text = "Select an Encounter"
+horizontal_alignment = 1
+
+[node name="EncounterContainer" type="ScrollContainer" parent="UILayer/EncounterSelectUI"]
+custom_minimum_size = Vector2(2.08165e-12, 2.08165e-12)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.25
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EncounterBox" type="VBoxContainer" parent="UILayer/EncounterSelectUI/EncounterContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3

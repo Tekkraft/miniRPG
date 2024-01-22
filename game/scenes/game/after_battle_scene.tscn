@@ -1,0 +1,478 @@
+[gd_scene load_steps=3 format=3 uid="uid://cl6n5pwxrgdsd"]
+
+[ext_resource type="Script" path="res://scripts/after_battle.gd" id="1_hbt77"]
+[ext_resource type="Texture2D" uid="uid://vnptdw32t1hd" path="res://sprites/progress_bars_hp.png" id="1_leqw0"]
+
+[node name="AfterBattleScene" type="Node2D"]
+script = ExtResource("1_hbt77")
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="AfterBattleUI" type="Control" parent="UILayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BaseUI" type="Control" parent="UILayer/AfterBattleUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundPanel" type="Panel" parent="UILayer/AfterBattleUI/BaseUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VictoryText" type="Label" parent="UILayer/AfterBattleUI/BaseUI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -611.0
+offset_top = 64.0
+offset_right = 611.0
+offset_bottom = 239.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 128
+text = "Victory!"
+horizontal_alignment = 1
+
+[node name="EncounterButton" type="Button" parent="UILayer/AfterBattleUI/BaseUI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -184.5
+offset_top = -107.0
+offset_right = 184.5
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 48
+text = "Next Encounter"
+
+[node name="PartyContainer" type="GridContainer" parent="UILayer/AfterBattleUI/BaseUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2
+anchor_top = 0.25
+anchor_right = 0.8
+anchor_bottom = 0.75
+offset_right = -2.28882e-05
+grow_horizontal = 2
+grow_vertical = 2
+columns = 3
+
+[node name="UnitPanel0" type="PanelContainer" parent="UILayer/AfterBattleUI/BaseUI/PartyContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="DataContainer" type="VBoxContainer" parent="UILayer/AfterBattleUI/BaseUI/PartyContainer/UnitPanel0"]
+layout_mode = 2
+alignment = 1
+
+[node name="UnitName" type="Label" parent="UILayer/AfterBattleUI/BaseUI/PartyContainer/UnitPanel0/DataContainer"]
+layout_mode = 2
+text = "Warrior"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HPBar" type="TextureProgressBar" parent="UILayer/AfterBattleUI/BaseUI/PartyContainer/UnitPanel0/DataContainer"]
+layout_mode = 2
+value = 50.0
+texture_progress = ExtResource("1_leqw0")
+
+[node name="HPLabel" type="Label" parent="UILayer/AfterBattleUI/BaseUI/PartyContainer/UnitPanel0/DataContainer/HPBar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.7
+anchor_right = 0.9
+anchor_bottom = 1.0
+offset_left = -62.0
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+text = "100/100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EXPBar" type="ProgressBar" parent="UILayer/AfterBattleUI/BaseUI/PartyContainer/UnitPanel0/DataContainer"]
+layout_mode = 2
+
+[node name="LevelUpButton" type="Button" parent="UILayer/AfterBattleUI/BaseUI/PartyContainer/UnitPanel0/DataContainer"]
+layout_mode = 2
+text = "Level Up"
+
+[node name="UnitPanel1" type="PanelContainer" parent="UILayer/AfterBattleUI/BaseUI/PartyContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="DataContainer" type="VBoxContainer" parent="UILayer/AfterBattleUI/BaseUI/PartyContainer/UnitPanel1"]
+layout_mode = 2
+alignment = 1
+
+[node name="UnitName" type="Label" parent="UILayer/AfterBattleUI/BaseUI/PartyContainer/UnitPanel1/DataContainer"]
+layout_mode = 2
+text = "Warrior"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HPBar" type="TextureProgressBar" parent="UILayer/AfterBattleUI/BaseUI/PartyContainer/UnitPanel1/DataContainer"]
+layout_mode = 2
+value = 50.0
+texture_progress = ExtResource("1_leqw0")
+
+[node name="HPLabel" type="Label" parent="UILayer/AfterBattleUI/BaseUI/PartyContainer/UnitPanel1/DataContainer/HPBar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.7
+anchor_right = 0.9
+anchor_bottom = 1.0
+offset_left = -62.0
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+text = "100/100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EXPBar" type="ProgressBar" parent="UILayer/AfterBattleUI/BaseUI/PartyContainer/UnitPanel1/DataContainer"]
+layout_mode = 2
+
+[node name="LevelUpButton" type="Button" parent="UILayer/AfterBattleUI/BaseUI/PartyContainer/UnitPanel1/DataContainer"]
+layout_mode = 2
+text = "Level Up"
+
+[node name="UnitPanel2" type="PanelContainer" parent="UILayer/AfterBattleUI/BaseUI/PartyContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="DataContainer" type="VBoxContainer" parent="UILayer/AfterBattleUI/BaseUI/PartyContainer/UnitPanel2"]
+layout_mode = 2
+alignment = 1
+
+[node name="UnitName" type="Label" parent="UILayer/AfterBattleUI/BaseUI/PartyContainer/UnitPanel2/DataContainer"]
+layout_mode = 2
+text = "Warrior"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HPBar" type="TextureProgressBar" parent="UILayer/AfterBattleUI/BaseUI/PartyContainer/UnitPanel2/DataContainer"]
+layout_mode = 2
+value = 50.0
+texture_progress = ExtResource("1_leqw0")
+
+[node name="HPLabel" type="Label" parent="UILayer/AfterBattleUI/BaseUI/PartyContainer/UnitPanel2/DataContainer/HPBar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.7
+anchor_right = 0.9
+anchor_bottom = 1.0
+offset_left = -62.0
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+text = "100/100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EXPBar" type="ProgressBar" parent="UILayer/AfterBattleUI/BaseUI/PartyContainer/UnitPanel2/DataContainer"]
+layout_mode = 2
+
+[node name="LevelUpButton" type="Button" parent="UILayer/AfterBattleUI/BaseUI/PartyContainer/UnitPanel2/DataContainer"]
+layout_mode = 2
+text = "Level Up"
+
+[node name="UnitPanel3" type="PanelContainer" parent="UILayer/AfterBattleUI/BaseUI/PartyContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="DataContainer" type="VBoxContainer" parent="UILayer/AfterBattleUI/BaseUI/PartyContainer/UnitPanel3"]
+layout_mode = 2
+alignment = 1
+
+[node name="UnitName" type="Label" parent="UILayer/AfterBattleUI/BaseUI/PartyContainer/UnitPanel3/DataContainer"]
+layout_mode = 2
+text = "Warrior"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HPBar" type="TextureProgressBar" parent="UILayer/AfterBattleUI/BaseUI/PartyContainer/UnitPanel3/DataContainer"]
+layout_mode = 2
+value = 50.0
+texture_progress = ExtResource("1_leqw0")
+
+[node name="HPLabel" type="Label" parent="UILayer/AfterBattleUI/BaseUI/PartyContainer/UnitPanel3/DataContainer/HPBar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.7
+anchor_right = 0.9
+anchor_bottom = 1.0
+offset_left = -62.0
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+text = "100/100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EXPBar" type="ProgressBar" parent="UILayer/AfterBattleUI/BaseUI/PartyContainer/UnitPanel3/DataContainer"]
+layout_mode = 2
+
+[node name="LevelUpButton" type="Button" parent="UILayer/AfterBattleUI/BaseUI/PartyContainer/UnitPanel3/DataContainer"]
+layout_mode = 2
+text = "Level Up"
+
+[node name="UnitPanel4" type="PanelContainer" parent="UILayer/AfterBattleUI/BaseUI/PartyContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="DataContainer" type="VBoxContainer" parent="UILayer/AfterBattleUI/BaseUI/PartyContainer/UnitPanel4"]
+layout_mode = 2
+alignment = 1
+
+[node name="UnitName" type="Label" parent="UILayer/AfterBattleUI/BaseUI/PartyContainer/UnitPanel4/DataContainer"]
+layout_mode = 2
+text = "Warrior"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HPBar" type="TextureProgressBar" parent="UILayer/AfterBattleUI/BaseUI/PartyContainer/UnitPanel4/DataContainer"]
+layout_mode = 2
+value = 50.0
+texture_progress = ExtResource("1_leqw0")
+
+[node name="HPLabel" type="Label" parent="UILayer/AfterBattleUI/BaseUI/PartyContainer/UnitPanel4/DataContainer/HPBar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.7
+anchor_right = 0.9
+anchor_bottom = 1.0
+offset_left = -62.0
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+text = "100/100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EXPBar" type="ProgressBar" parent="UILayer/AfterBattleUI/BaseUI/PartyContainer/UnitPanel4/DataContainer"]
+layout_mode = 2
+
+[node name="LevelUpButton" type="Button" parent="UILayer/AfterBattleUI/BaseUI/PartyContainer/UnitPanel4/DataContainer"]
+layout_mode = 2
+text = "Level Up"
+
+[node name="UnitPanel5" type="PanelContainer" parent="UILayer/AfterBattleUI/BaseUI/PartyContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="DataContainer" type="VBoxContainer" parent="UILayer/AfterBattleUI/BaseUI/PartyContainer/UnitPanel5"]
+layout_mode = 2
+alignment = 1
+
+[node name="UnitName" type="Label" parent="UILayer/AfterBattleUI/BaseUI/PartyContainer/UnitPanel5/DataContainer"]
+layout_mode = 2
+text = "Warrior"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HPBar" type="TextureProgressBar" parent="UILayer/AfterBattleUI/BaseUI/PartyContainer/UnitPanel5/DataContainer"]
+layout_mode = 2
+value = 50.0
+texture_progress = ExtResource("1_leqw0")
+
+[node name="HPLabel" type="Label" parent="UILayer/AfterBattleUI/BaseUI/PartyContainer/UnitPanel5/DataContainer/HPBar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.7
+anchor_right = 0.9
+anchor_bottom = 1.0
+offset_left = -62.0
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+text = "100/100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EXPBar" type="ProgressBar" parent="UILayer/AfterBattleUI/BaseUI/PartyContainer/UnitPanel5/DataContainer"]
+layout_mode = 2
+
+[node name="LevelUpButton" type="Button" parent="UILayer/AfterBattleUI/BaseUI/PartyContainer/UnitPanel5/DataContainer"]
+layout_mode = 2
+text = "Level Up"
+
+[node name="LevelUpUI" type="Control" parent="UILayer/AfterBattleUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundPanel" type="Panel" parent="UILayer/AfterBattleUI/LevelUpUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LevelUpText" type="Label" parent="UILayer/AfterBattleUI/LevelUpUI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -611.0
+offset_top = 64.0
+offset_right = 611.0
+offset_bottom = 239.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 128
+text = "Level Up!"
+horizontal_alignment = 1
+
+[node name="StatContainer" type="VBoxContainer" parent="UILayer/AfterBattleUI/LevelUpUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2
+anchor_top = 0.25
+anchor_right = 0.8
+anchor_bottom = 0.75
+offset_right = -2.28882e-05
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="STR" type="HBoxContainer" parent="UILayer/AfterBattleUI/LevelUpUI/StatContainer"]
+layout_mode = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="StatLabel" type="Label" parent="UILayer/AfterBattleUI/LevelUpUI/StatContainer/STR"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "STR: ### > ###"
+
+[node name="BoostButton" type="Button" parent="UILayer/AfterBattleUI/LevelUpUI/StatContainer/STR"]
+custom_minimum_size = Vector2(128, 2.08165e-12)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "+1 STR"
+
+[node name="DEF" type="HBoxContainer" parent="UILayer/AfterBattleUI/LevelUpUI/StatContainer"]
+layout_mode = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="StatLabel" type="Label" parent="UILayer/AfterBattleUI/LevelUpUI/StatContainer/DEF"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "STR: ### > ###"
+
+[node name="BoostButton" type="Button" parent="UILayer/AfterBattleUI/LevelUpUI/StatContainer/DEF"]
+custom_minimum_size = Vector2(128, 2.08165e-12)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "+1 DEF"
+
+[node name="INT" type="HBoxContainer" parent="UILayer/AfterBattleUI/LevelUpUI/StatContainer"]
+layout_mode = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="StatLabel" type="Label" parent="UILayer/AfterBattleUI/LevelUpUI/StatContainer/INT"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "STR: ### > ###"
+
+[node name="BoostButton" type="Button" parent="UILayer/AfterBattleUI/LevelUpUI/StatContainer/INT"]
+custom_minimum_size = Vector2(128, 2.08165e-12)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "+1 INT"
+
+[node name="RES" type="HBoxContainer" parent="UILayer/AfterBattleUI/LevelUpUI/StatContainer"]
+layout_mode = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="StatLabel" type="Label" parent="UILayer/AfterBattleUI/LevelUpUI/StatContainer/RES"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "STR: ### > ###"
+
+[node name="BoostButton" type="Button" parent="UILayer/AfterBattleUI/LevelUpUI/StatContainer/RES"]
+custom_minimum_size = Vector2(128, 2.08165e-12)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "+1 RES"
+
+[node name="DEX" type="HBoxContainer" parent="UILayer/AfterBattleUI/LevelUpUI/StatContainer"]
+layout_mode = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="StatLabel" type="Label" parent="UILayer/AfterBattleUI/LevelUpUI/StatContainer/DEX"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "STR: ### > ###"
+
+[node name="BoostButton" type="Button" parent="UILayer/AfterBattleUI/LevelUpUI/StatContainer/DEX"]
+custom_minimum_size = Vector2(128, 2.08165e-12)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "+1 DEX"
+
+[node name="AGI" type="HBoxContainer" parent="UILayer/AfterBattleUI/LevelUpUI/StatContainer"]
+layout_mode = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="StatLabel" type="Label" parent="UILayer/AfterBattleUI/LevelUpUI/StatContainer/AGI"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "STR: ### > ###"
+
+[node name="BoostButton" type="Button" parent="UILayer/AfterBattleUI/LevelUpUI/StatContainer/AGI"]
+custom_minimum_size = Vector2(128, 2.08165e-12)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "+1 AGI"
+
+[connection signal="pressed" from="UILayer/AfterBattleUI/BaseUI/EncounterButton" to="." method="_on_encounter_button_pressed"]
+[connection signal="pressed" from="UILayer/AfterBattleUI/BaseUI/PartyContainer/UnitPanel0/DataContainer/LevelUpButton" to="." method="_on_level_up_button_pressed" binds= [0]]
+[connection signal="pressed" from="UILayer/AfterBattleUI/BaseUI/PartyContainer/UnitPanel1/DataContainer/LevelUpButton" to="." method="_on_level_up_button_pressed" binds= [1]]
+[connection signal="pressed" from="UILayer/AfterBattleUI/BaseUI/PartyContainer/UnitPanel2/DataContainer/LevelUpButton" to="." method="_on_level_up_button_pressed" binds= [2]]
+[connection signal="pressed" from="UILayer/AfterBattleUI/BaseUI/PartyContainer/UnitPanel3/DataContainer/LevelUpButton" to="." method="_on_level_up_button_pressed" binds= [3]]
+[connection signal="pressed" from="UILayer/AfterBattleUI/BaseUI/PartyContainer/UnitPanel4/DataContainer/LevelUpButton" to="." method="_on_level_up_button_pressed" binds= [4]]
+[connection signal="pressed" from="UILayer/AfterBattleUI/LevelUpUI/StatContainer/STR/BoostButton" to="." method="_on_boost_button_pressed" binds= ["STR"]]
+[connection signal="pressed" from="UILayer/AfterBattleUI/LevelUpUI/StatContainer/DEF/BoostButton" to="." method="_on_boost_button_pressed" binds= ["DEF"]]
+[connection signal="pressed" from="UILayer/AfterBattleUI/LevelUpUI/StatContainer/INT/BoostButton" to="." method="_on_boost_button_pressed" binds= ["INT"]]
+[connection signal="pressed" from="UILayer/AfterBattleUI/LevelUpUI/StatContainer/RES/BoostButton" to="." method="_on_boost_button_pressed" binds= ["RES"]]
+[connection signal="pressed" from="UILayer/AfterBattleUI/LevelUpUI/StatContainer/DEX/BoostButton" to="." method="_on_boost_button_pressed" binds= ["DEX"]]
+[connection signal="pressed" from="UILayer/AfterBattleUI/LevelUpUI/StatContainer/AGI/BoostButton" to="." method="_on_boost_button_pressed" binds= ["AGI"]]

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="UnitStats" load_steps=4 format=3 uid="uid://ejiylhq5rflj"]
+[gd_resource type="Resource" script_class="UnitData" load_steps=4 format=3 uid="uid://ejiylhq5rflj"]
 
 [ext_resource type="Script" path="res://scripts/unit_data.gd" id="1_vbja4"]
 [ext_resource type="Texture2D" uid="uid://drwkgkbenm52g" path="res://sprites/character_icons.png" id="2_70wrc"]
@@ -11,7 +11,7 @@ unit_icon = ExtResource("2_70wrc")
 unit_class = ExtResource("2_w20hb")
 current_exp = 0
 current_level = 1
-max_hp = 100
+max_hp = 120
 stat_dict = {
 "AGI": 6,
 "DEF": 14,

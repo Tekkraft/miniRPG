@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="UnitStats" load_steps=3 format=3 uid="uid://bgtwc6wk1mrqk"]
+[gd_resource type="Resource" script_class="UnitData" load_steps=3 format=3 uid="uid://bgtwc6wk1mrqk"]
 
 [ext_resource type="Script" path="res://scripts/unit_data.gd" id="1_7a8ig"]
 [ext_resource type="Texture2D" uid="uid://drwkgkbenm52g" path="res://sprites/character_icons.png" id="2_nwtjw"]

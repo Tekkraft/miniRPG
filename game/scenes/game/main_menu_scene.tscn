@@ -1,0 +1,58 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkts6f06ql88"]
+
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_dbvq5"]
+[ext_resource type="Resource" uid="uid://3sdnvop2qbdb" path="res://encounters/wolves.tres" id="2_wbj37"]
+
+[node name="MainMenuScene" type="Node2D"]
+script = ExtResource("1_dbvq5")
+encounter_table = Array[Resource("res://scripts/encounter.gd")]([ExtResource("2_wbj37")])
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="MainMenuUI" type="Control" parent="UILayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundPanel" type="Panel" parent="UILayer/MainMenuUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainMenuText" type="Label" parent="UILayer/MainMenuUI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -417.0
+offset_top = 64.0
+offset_right = 417.0
+offset_bottom = 239.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 128
+text = "Proto-JRPG"
+horizontal_alignment = 1
+
+[node name="StartButton" type="Button" parent="UILayer/MainMenuUI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -43.5
+offset_top = -95.0
+offset_right = 43.5
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 64
+text = "Begin!"
+
+[connection signal="pressed" from="UILayer/MainMenuUI/StartButton" to="." method="_on_start_button_pressed"]

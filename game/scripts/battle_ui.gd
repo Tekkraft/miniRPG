@@ -74,7 +74,7 @@ func show_skill_actions():
 	var active_unit = get_parent().active_unit as Unit
 	if active_unit == null:
 		return
-	add_skills(active_unit.unit_class.skills)
+	add_skills(active_unit.unit_data.unit_class.skills)
 
 
 func hide_all_actions():
@@ -130,6 +130,7 @@ func _on_skill_button_pressed():
 
 
 func _on_defend_button_pressed():
+	print(defend_skill.effects[0].status.effects[0].passive_effect)
 	emit_signal("skillSelected", defend_skill)
 
 

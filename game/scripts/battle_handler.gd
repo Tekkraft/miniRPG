@@ -30,40 +30,43 @@ var active_ability : Ability
 
 var selection_targets = []
 
-func temp_preload():
-	var unit0 = (load("res://scenes/game/unit.tscn") as PackedScene).instantiate() as Unit
-	unit0.setup(load("res://units/player_units/player_0.tres"), load("res://classes/character_class/warrior.tres"), true)
-	PlayerParty.new_unit(unit0, true)
-	var unit1 = (load("res://scenes/game/unit.tscn") as PackedScene).instantiate() as Unit
-	unit1.setup(load("res://units/player_units/player_1.tres"), load("res://classes/character_class/knight.tres"), true)
-	PlayerParty.new_unit(unit1, true)
+var camera : Camera2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	temp_preload()
-	current_state = BattleState.IDLE
-	randomize()
+	camera = get_node("GameCamera")
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	if current_state == BattleState.TARGET:
+		var target = find_closest_unit()
+		if not target == null:
+			mark_selector(target)
+	
+	# ADD CAMERA STUFF IF POSSIBLE
+
+
+func _input(event):
+	pass
+
+
+func setup(encounter : Encounter):
 	load_party()
-	load_unit(test_stats, false)
-	load_unit(test_stats, false)
-	load_unit(test_stats, false)
+	
+	for enemy in encounter.enemy_list:
+		var new_enemy = enemy.duplicate(true)
+		var target_level = encounter.encounter_level
+		target_level += randi_range(-1 * encounter.encounter_level_variance, encounter.encounter_level_variance)
+		target_level = max(target_level, 1)
+		new_enemy.autolevel_unit(target_level)
+		load_unit(new_enemy, false)
+	
 	space_units(get_node("PlayerUnits"))
 	space_units(get_node("EnemyUnits"))
 	
 	change_state(BattleState.IDLE)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	#print(str(current_state) + " > " + str(state_history))
-	if current_state == BattleState.TARGET:
-		var target = find_closest_unit()
-		if not target == null:
-			mark_selector(target)
-
-
-func _input(event):
-	pass
 
 
 func _unhandled_input(event):
@@ -82,7 +85,9 @@ func find_closest_unit():
 	var mouse_pos = get_viewport().get_mouse_position()
 	var distance = max(get_viewport_rect().size.x, get_viewport_rect().size.y) * 2 
 	var closest = null
-	for unit in selection_targets:
+	for unit : Unit in selection_targets:
+		if unit.is_dead():
+			continue
 		var target_distance = mouse_pos.distance_to(unit.global_position)
 		if target_distance <= distance:
 			closest = unit
@@ -95,15 +100,17 @@ func find_closest_unit():
 func load_party():
 	var party = PlayerParty.party_units
 	for unit in party:
-		get_node("PlayerUnits").add_child(unit)
-		get_node("BattleUI").create_hp_bar(unit)
-		(get_node("InitativeQueue") as InitiativeQueue).add_to_initiative(unit)
+		var new_unit = (load("res://scenes/game/unit.tscn") as PackedScene).instantiate()
+		new_unit.setup(unit, true)
+		get_node("PlayerUnits").add_child(new_unit)
+		get_node("BattleUI").create_hp_bar(new_unit)
+		(get_node("InitativeQueue") as InitiativeQueue).add_to_initiative(new_unit)
 
 
 # Create new units and assign them to the correct teams
 func load_unit(stats : UnitData, player : bool):
 	var new_unit = unit_obj.instantiate() as Unit
-	new_unit.setup(stats, load("res://classes/warrior.tres"), player)
+	new_unit.setup(stats, player)
 	if player:
 		get_node("PlayerUnits").add_child(new_unit)
 		get_node("BattleUI").create_hp_bar(new_unit)
@@ -111,6 +118,7 @@ func load_unit(stats : UnitData, player : bool):
 		get_node("EnemyUnits").add_child(new_unit)
 		new_unit.apply_scale(Vector2(-1,1))
 		new_unit.get_node("StatusBox").apply_scale(Vector2(-1,1))
+		new_unit.get_node("QuickDataBox").apply_scale(Vector2(-1,1))
 	(get_node("InitativeQueue") as InitiativeQueue).add_to_initiative(new_unit)
 	return new_unit
 
@@ -120,31 +128,60 @@ func space_units(unit_list : Node2D):
 	for i in unit_count:
 		var unit = unit_list.get_child(i)
 		# We do this to avoid having to rely on floats - may change
-		(unit as Node2D).position = Vector2(0, (192 * (i * 2 - unit_count) / 2))
+		(unit as Node2D).position = Vector2(0, (256 * (i * 2 - unit_count) / 2))
 
 
 func kill_unit(unit : Unit):
 	(get_node("InitativeQueue") as InitiativeQueue).remove_from_initiative(unit)
-	var parent_list = unit.get_parent()
-	parent_list.remove_child(unit)
-	unit.queue_free()
-	space_units(parent_list)
+	if not unit.is_player():
+		for player in PlayerParty.party_units:
+			player.current_exp += (unit.unit_data as EnemyData).calculate_exp_gain(player.current_level)
+		for player in PlayerParty.reserve_units:
+			player.current_exp += (unit.unit_data as EnemyData).calculate_exp_gain(player.current_level) / 2
+	#var parent_list = unit.get_parent()
+	#parent_list.remove_child(unit)
+	#unit.queue_free()
+	#space_units(parent_list)
+
+
+func victory_check():
+	for enemy : Unit in get_node("EnemyUnits").get_children():
+		if not enemy.is_dead():
+			return false
+	return true
+
+
+func defeat_check():
+	for enemy : Unit in get_node("PlayerUnits").get_children():
+		if not enemy.is_dead():
+			return false
+	return true
 
 
 func damage_step(attacker : Unit, defender : Unit, ability_step : AbilityStep, boost : int):
 	if ability_step.independent_hit:
 		if not check_hit(attacker, defender, ability_step.hit_rate, true):
 			return
-		
-	var base_dmg = attacker.unit_data.get_stat("STR") + ability_step.damage
+	
+	var unit_atk = 0
+	var unit_def = 0
+	
+	if not ability_step.damage_type == DamageCalculator.DamageType.PHYSICAL:
+		unit_atk = attacker.get_stat("INT")
+		unit_def = defender.get_stat("RES")
+	else:
+		unit_atk = attacker.get_stat("STR")
+		unit_def = defender.get_stat("DEF")
+	
+	var base_dmg = unit_atk + ability_step.damage
 	var attack_multiplier = attacker.get_damage_dealt_multiplier()
 	base_dmg *= attack_multiplier
-	print("*" + str(attack_multiplier))
 	var defense_multiplier = defender.get_damage_taken_multiplier()
 	base_dmg *= defense_multiplier
+	print("*" + str(defense_multiplier))
 	
-	var calc_dmg = base_dmg - defender.unit_data.get_stat("DEF")
-	calc_dmg = max(calc_dmg, 0)
+	var calc_dmg = base_dmg - unit_def
+	calc_dmg = floori(max(calc_dmg, 0))
 	
 	# NOTE: Possibly add ability/step crit rates?
 	if check_crit(attacker, defender, 0):
@@ -250,6 +287,7 @@ func resolve_action(origin : Unit, target : Unit, ability : Ability):
 				AbilityStep.StepType.STATUS:
 					status_step(origin, effect_target, ability_step)
 	
+	
 	change_state(BattleState.CLEANUP)
 
 
@@ -345,7 +383,22 @@ func ai_step():
 
 
 func cleanup_turn():
-	end_turn()
+	if not active_unit == null:
+		end_turn()
+	
+	# Victory and defeat checks
+	if victory_check():
+		SceneHandler.change_state(SceneHandler.GameState.AFTER_BATTLE, null)
+	
+	if defeat_check():
+		var game_over_data = {}
+		for enemy : Unit in get_node("EnemyUnits").get_children():
+			if enemy.is_dead():
+				game_over_data[enemy.unit_data.unit_name] = "Defeated"
+			else:
+				game_over_data[enemy.unit_data.unit_name] = str(enemy.unit_data.hp) + "/" + str(enemy.unit_data.max_hp)
+		SceneHandler.change_state(SceneHandler.GameState.GAME_OVER, game_over_data)
+	
 	selected_unit = null
 	active_ability = null
 	active_unit = null
@@ -362,7 +415,7 @@ func end_turn():
 
 
 func change_state(new_state : BattleState):
-	print(new_state)
+	#print(new_state)
 	state_history.append(current_state)
 	current_state = new_state
 	

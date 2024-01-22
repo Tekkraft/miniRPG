@@ -2,7 +2,6 @@ class_name Unit
 extends Node2D
 
 @export var unit_data : UnitData
-@export var unit_class : UnitClass
 
 var statuses = {}
 # NOTE: Temp statuses are lost at end of turn and not drawn - use for VERY temporary buffs
@@ -20,16 +19,21 @@ func _process(delta):
 	pass
 
 
-func setup(stats : UnitData, u_class : UnitClass, player : bool):
+func setup(stats : UnitData, player : bool):
 	unit_data = stats
-	unit_class = u_class
 	player_unit = player
+	unit_data.hp = unit_data.max_hp
+	load_extra_data()
 
 
-func setup_from_stat(stats : UnitData):
-	unit_data = stats
-	unit_class = stats.unit_class
-	player_unit = true
+func load_extra_data():
+	unit_data.hpChanged.connect(_on_hp_changed)
+	var hp_bar = get_node("QuickDataBox/QuickDataContainer/QuickDataHealth") as TextureProgressBar
+	hp_bar.max_value = unit_data.max_hp
+	hp_bar.value = unit_data.hp
+	get_node("QuickDataBox/QuickDataContainer/QuickDataText").text = \
+		unit_data.unit_name + " LV: " + str(unit_data.current_level)
+
 
 
 func is_player():
@@ -48,7 +52,7 @@ func add_status(new_status : Status, status_duration : int):
 	if statuses.has(new_status):
 		statuses[new_status] += status_duration
 	else:
-		statuses[new_status] = status_duration
+		statuses[new_status.duplicate(true)] = status_duration
 	
 	# TODO: Find optimizations
 	draw_statuses()
@@ -56,7 +60,7 @@ func add_status(new_status : Status, status_duration : int):
 
 func add_temp_status(new_status : Status):
 	if not temp_statuses.has(new_status):
-		temp_statuses.append(new_status)
+		temp_statuses.append(new_status.duplicate(true))
 
 
 func tick_down_status():
@@ -165,3 +169,7 @@ func get_damage_taken_multiplier():
 					base_mult *= effect.damage_multiplier
 	
 	return base_mult
+
+
+func _on_hp_changed(new_value):
+	get_node("QuickDataBox/QuickDataContainer/QuickDataHealth").value = new_value

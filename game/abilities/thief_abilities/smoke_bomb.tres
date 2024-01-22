@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=5 format=3 uid="uid://wjlscc81r24m"]
+
+[ext_resource type="Script" path="res://scripts/ability_step.gd" id="1_us2g0"]
+[ext_resource type="Script" path="res://scripts/ability.gd" id="1_vhnph"]
+[ext_resource type="Resource" uid="uid://bowsvjd8s58y4" path="res://statuses/stagger.tres" id="2_apdig"]
+
+[sub_resource type="Resource" id="Resource_w57u5"]
+Resource = null
+resource_path = "res://abilities/thief_abilities/smoke_bomb.tres::Resource_w57u5"
+script = ExtResource("1_us2g0")
+step_type = 3
+conditions = Array[Resource("res://scripts/effect_condition.gd")]([])
+step_target = 1
+independent_hit = false
+hit_rate = 0
+damage = 0
+damage_type = 0
+healing = 0
+charge = 0
+status = ExtResource("2_apdig")
+temp_status = false
+status_duration = 3
+animation = ""
+time = 0.0
+comment = ""
+
+[resource]
+script = ExtResource("1_vhnph")
+name = "Smoke Bomb"
+description = "Stagger one target. Never misses."
+energy_cost = 1
+hit = 999
+ability_target = 2
+effects = Array[ExtResource("1_us2g0")]([SubResource("Resource_w57u5")])

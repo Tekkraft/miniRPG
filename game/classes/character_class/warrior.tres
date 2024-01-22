@@ -1,13 +1,14 @@
-[gd_resource type="Resource" script_class="CharacterClass" load_steps=5 format=3 uid="uid://coopbmj1c0xhm"]
+[gd_resource type="Resource" script_class="CharacterClass" load_steps=6 format=3 uid="uid://coopbmj1c0xhm"]
 
 [ext_resource type="Texture2D" uid="uid://drwkgkbenm52g" path="res://sprites/character_icons.png" id="1_tkihr"]
 [ext_resource type="Script" path="res://scripts/character_class.gd" id="1_wryba"]
 [ext_resource type="Resource" uid="uid://c00p47dbyljjy" path="res://abilities/warrior_abilities/heavy_attack.tres" id="2_bnt1d"]
-[ext_resource type="Resource" uid="uid://cfeiswboa0lmq" path="res://abilities/basic_heal.tres" id="3_chd02"]
+[ext_resource type="Resource" uid="uid://cgacsld3wxetf" path="res://abilities/warrior_abilities/double_slash.tres" id="4_vpa3d"]
+[ext_resource type="Resource" uid="uid://dd37qtf2jhbk8" path="res://abilities/warrior_abilities/second_wind.tres" id="5_muype"]
 
 [resource]
 script = ExtResource("1_wryba")
 test = 0
 name = "Warrior"
 icon = ExtResource("1_tkihr")
-skills = Array[Resource("res://scripts/ability.gd")]([ExtResource("2_bnt1d"), ExtResource("3_chd02")])
+skills = Array[Resource("res://scripts/ability.gd")]([ExtResource("2_bnt1d"), ExtResource("4_vpa3d"), ExtResource("5_muype")])

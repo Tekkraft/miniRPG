@@ -23,6 +23,7 @@ func setup(stats : UnitData, player : bool):
 	unit_data = stats
 	player_unit = player
 	unit_data.hp = unit_data.max_hp
+	unit_data.energy = unit_data.starting_energy
 	load_extra_data()
 
 

@@ -15,6 +15,8 @@ signal energyChanged
 var hp = 100
 @export var max_hp = 100
 
+const starting_energy = 5
+
 var energy = 5
 var max_energy = 10
 
@@ -81,5 +83,5 @@ func get_max_hp():
 
 
 func get_hp_perc():
-	return float(hp)/max_hp
+	return float(hp)/max_hp * 100
 

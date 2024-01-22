@@ -1,6 +1,9 @@
-[gd_scene format=3 uid="uid://d3s883ifwbs5f"]
+[gd_scene load_steps=2 format=3 uid="uid://d3s883ifwbs5f"]
+
+[ext_resource type="Script" path="res://scripts/party_select.gd" id="1_juip1"]
 
 [node name="PartySelectScene" type="Node2D"]
+script = ExtResource("1_juip1")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -38,31 +41,62 @@ horizontal_alignment = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.2
-anchor_top = 0.25
+anchor_top = 0.3
 anchor_right = 0.4
-anchor_bottom = 0.75
-offset_right = 40.0
-offset_bottom = 40.0
+anchor_bottom = 0.8
 
 [node name="ReserveParty" type="ItemList" parent="CanvasLayer/EncounterSelectUI"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.6
-anchor_top = 0.25
+anchor_top = 0.3
 anchor_right = 0.8
-anchor_bottom = 0.75
-offset_right = 40.0
-offset_bottom = 40.0
+anchor_bottom = 0.8
 
 [node name="AddPartyButton" type="Button" parent="CanvasLayer/EncounterSelectUI"]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+custom_minimum_size = Vector2(256, 2.08165e-12)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -60.0
+offset_right = 128.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "<<< Party"
 
 [node name="AddReserveButton" type="Button" parent="CanvasLayer/EncounterSelectUI"]
-offset_right = 8.0
-offset_bottom = 8.0
+custom_minimum_size = Vector2(256, 2.08165e-12)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.55
+anchor_right = 0.5
+anchor_bottom = 0.55
+offset_left = -128.0
+offset_top = 6.0
+offset_right = 128.0
+offset_bottom = 59.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "Reserve >>>"
 
 [node name="ReturnButton" type="Button" parent="CanvasLayer/EncounterSelectUI"]
-offset_right = 8.0
-offset_bottom = 8.0
+layout_mode = 0
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 310.0
+offset_bottom = 206.0
+theme_override_font_sizes/font_size = 48
+text = "Return to
+Encounter"
+
+[connection signal="pressed" from="CanvasLayer/EncounterSelectUI/AddPartyButton" to="." method="_on_add_party_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/EncounterSelectUI/AddReserveButton" to="." method="_on_add_reserve_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/EncounterSelectUI/ReturnButton" to="." method="_on_return_button_pressed"]

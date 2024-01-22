@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Encounter" load_steps=4 format=3 uid="uid://c0u0e80ywu3tb"]
+
+[ext_resource type="Resource" uid="uid://dai2crtueuw6e" path="res://units/enemy_units/dire_wolf.tres" id="1_5eoeb"]
+[ext_resource type="Resource" uid="uid://bpb0rquy27onm" path="res://units/enemy_units/wolf.tres" id="1_yk2ui"]
+[ext_resource type="Script" path="res://scripts/encounter.gd" id="2_k4crm"]
+
+[resource]
+script = ExtResource("2_k4crm")
+encounter_name = "Dire Wolf Pack"
+enemy_list = Array[Resource("res://scripts/enemy_data.gd")]([ExtResource("1_5eoeb"), ExtResource("1_yk2ui"), ExtResource("1_yk2ui")])
+encounter_level = 5
+encounter_level_variance = 2

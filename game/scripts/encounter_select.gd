@@ -23,3 +23,6 @@ func setup(data):
 func _on_encounter_selected(encounter):
 	SceneHandler.change_state(SceneHandler.GameState.BATTLE, encounter)
 
+
+func _on_party_button_pressed():
+	SceneHandler.change_state(SceneHandler.GameState.PARTY_SELECT, null)

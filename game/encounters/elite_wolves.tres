@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Encounter" load_steps=3 format=3 uid="uid://7fk8dludc1fp"]
+
+[ext_resource type="Resource" uid="uid://bpb0rquy27onm" path="res://units/enemy_units/wolf.tres" id="1_npj2u"]
+[ext_resource type="Script" path="res://scripts/encounter.gd" id="2_acdoa"]
+
+[resource]
+script = ExtResource("2_acdoa")
+encounter_name = "Great Wolf Pack"
+enemy_list = Array[Resource("res://scripts/enemy_data.gd")]([ExtResource("1_npj2u"), ExtResource("1_npj2u"), ExtResource("1_npj2u")])
+encounter_level = 3
+encounter_level_variance = 1

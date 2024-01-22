@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Encounter" load_steps=3 format=3 uid="uid://2n5m1jjjjsad"]
+
+[ext_resource type="Resource" uid="uid://cxstu0e8uqrwe" path="res://units/enemy_units/dragon.tres" id="1_qa1os"]
+[ext_resource type="Script" path="res://scripts/encounter.gd" id="1_ulwfx"]
+
+[resource]
+script = ExtResource("1_ulwfx")
+encounter_name = "Fearsome Dragon"
+enemy_list = Array[Resource("res://scripts/enemy_data.gd")]([ExtResource("1_qa1os")])
+encounter_level = 15
+encounter_level_variance = 3

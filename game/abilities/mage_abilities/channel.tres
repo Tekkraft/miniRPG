@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=4 format=3 uid="uid://yfxa08s51yre"]
+
+[ext_resource type="Script" path="res://scripts/ability_step.gd" id="1_fsprs"]
+[ext_resource type="Script" path="res://scripts/ability.gd" id="1_ypimx"]
+
+[sub_resource type="Resource" id="Resource_hjr65"]
+Resource = null
+resource_path = "res://abilities/mage_abilities/channel.tres::Resource_hjr65"
+script = ExtResource("1_fsprs")
+step_type = 2
+conditions = Array[Resource("res://scripts/effect_condition.gd")]([])
+step_target = 1
+independent_hit = false
+hit_rate = 0
+damage = 0
+damage_type = 0
+healing = 0
+charge = 3
+temp_status = false
+status_duration = 0
+animation = ""
+time = 0.0
+comment = ""
+
+[resource]
+script = ExtResource("1_ypimx")
+name = "Channel"
+description = "Focus deeply, regaining 3 energy."
+energy_cost = 0
+hit = 999
+ability_target = 0
+effects = Array[ExtResource("1_fsprs")]([SubResource("Resource_hjr65")])

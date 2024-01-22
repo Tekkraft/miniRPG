@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=5 format=3 uid="uid://d3lsp4lqicxby"]
+
+[ext_resource type="Script" path="res://scripts/ability_step.gd" id="1_veloi"]
+[ext_resource type="Script" path="res://scripts/ability.gd" id="1_xuauh"]
+[ext_resource type="Resource" uid="uid://blx71gg1knf7u" path="res://statuses/defend.tres" id="2_6sk7n"]
+
+[sub_resource type="Resource" id="Resource_cgvti"]
+Resource = null
+resource_path = "res://abilities/knight_abilities/stalwart.tres::Resource_cgvti"
+script = ExtResource("1_veloi")
+step_type = 3
+conditions = Array[Resource("res://scripts/effect_condition.gd")]([])
+step_target = 1
+independent_hit = false
+hit_rate = 0
+damage = 0
+damage_type = 0
+healing = 0
+charge = 0
+status = ExtResource("2_6sk7n")
+temp_status = false
+status_duration = 4
+animation = ""
+time = 0.0
+comment = ""
+
+[resource]
+script = ExtResource("1_xuauh")
+name = "Stalwart"
+description = "Gain defend bonuses for three turns."
+energy_cost = 1
+hit = 999
+ability_target = 0
+effects = Array[ExtResource("1_veloi")]([SubResource("Resource_cgvti")])

@@ -1,0 +1,51 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=5 format=3 uid="uid://dvmos0yjerac5"]
+
+[ext_resource type="Script" path="res://scripts/ability_step.gd" id="1_alp48"]
+[ext_resource type="Script" path="res://scripts/ability.gd" id="1_mak4g"]
+
+[sub_resource type="Resource" id="Resource_u7ft5"]
+Resource = null
+resource_path = "res://abilities/cleric_abilities/smite.tres::Resource_u7ft5"
+script = ExtResource("1_alp48")
+step_type = 0
+conditions = Array[Resource("res://scripts/effect_condition.gd")]([])
+step_target = 1
+independent_hit = false
+hit_rate = 0
+damage = 5
+damage_type = 1
+healing = 0
+charge = 0
+temp_status = false
+status_duration = 0
+animation = ""
+time = 0.0
+comment = ""
+
+[sub_resource type="Resource" id="Resource_r85o8"]
+Resource = null
+resource_path = "res://abilities/cleric_abilities/smite.tres::Resource_r85o8"
+script = ExtResource("1_alp48")
+step_type = 2
+conditions = Array[Resource("res://scripts/effect_condition.gd")]([])
+step_target = 1
+independent_hit = false
+hit_rate = 0
+damage = 0
+damage_type = 0
+healing = 0
+charge = 1
+temp_status = false
+status_duration = 0
+animation = ""
+time = 0.0
+comment = ""
+
+[resource]
+script = ExtResource("1_mak4g")
+name = "Smite"
+description = "Burn the enemy for a small amount of fire damage. Never misses."
+energy_cost = 0
+hit = 999
+ability_target = 2
+effects = Array[ExtResource("1_alp48")]([SubResource("Resource_u7ft5"), SubResource("Resource_r85o8")])

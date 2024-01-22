@@ -1,0 +1,53 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=6 format=3 uid="uid://dfa2632ntfmui"]
+
+[ext_resource type="Script" path="res://scripts/ability.gd" id="1_tufg7"]
+[ext_resource type="Script" path="res://scripts/ability_step.gd" id="1_xcbwg"]
+[ext_resource type="Resource" uid="uid://bowsvjd8s58y4" path="res://statuses/stagger.tres" id="2_pxuae"]
+
+[sub_resource type="Resource" id="Resource_odwm6"]
+Resource = null
+resource_path = "res://abilities/enemy_abilities/dragon/roar.tres::Resource_odwm6"
+script = ExtResource("1_xcbwg")
+step_type = 2
+conditions = Array[Resource("res://scripts/effect_condition.gd")]([])
+step_target = 0
+independent_hit = false
+hit_rate = 0
+damage = 0
+damage_type = 0
+healing = 0
+charge = 2
+temp_status = false
+status_duration = 0
+animation = ""
+time = 0.0
+comment = ""
+
+[sub_resource type="Resource" id="Resource_qc2br"]
+Resource = null
+resource_path = "res://abilities/enemy_abilities/dragon/roar.tres::Resource_qc2br"
+script = ExtResource("1_xcbwg")
+step_type = 3
+conditions = Array[Resource("res://scripts/effect_condition.gd")]([])
+step_target = 1
+independent_hit = false
+hit_rate = 0
+damage = 0
+damage_type = 0
+healing = 0
+charge = 0
+status = ExtResource("2_pxuae")
+temp_status = false
+status_duration = 2
+animation = ""
+time = 0.0
+comment = ""
+
+[resource]
+script = ExtResource("1_tufg7")
+name = "Roar"
+description = ""
+energy_cost = 0
+hit = 999
+ability_target = 2
+effects = Array[ExtResource("1_xcbwg")]([SubResource("Resource_odwm6"), SubResource("Resource_qc2br")])

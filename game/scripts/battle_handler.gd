@@ -377,7 +377,9 @@ func set_active_unit(unit : Unit):
 
 func ai_step():
 	await get_tree().create_timer(1).timeout
-	active_ability = basic_attack
+	active_ability = active_unit.unit_data.unit_class.skills.pick_random() as Ability
+	while active_ability.energy_cost > active_unit.unit_data.energy:
+		active_ability = active_unit.unit_data.unit_class.skills.pick_random() as Ability
 	selected_unit = get_node("PlayerUnits").get_children().pick_random()
 	change_state(BattleState.RESOLVE)
 

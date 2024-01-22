@@ -1,0 +1,51 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=5 format=3 uid="uid://dd37qtf2jhbk8"]
+
+[ext_resource type="Script" path="res://scripts/ability_step.gd" id="1_c074e"]
+[ext_resource type="Script" path="res://scripts/ability.gd" id="1_jys81"]
+
+[sub_resource type="Resource" id="Resource_xlsqq"]
+Resource = null
+resource_path = "res://abilities/warrior_abilities/second_wind.tres::Resource_xlsqq"
+script = ExtResource("1_c074e")
+step_type = 1
+conditions = Array[Resource("res://scripts/effect_condition.gd")]([])
+step_target = 1
+independent_hit = false
+hit_rate = 0
+damage = 0
+damage_type = 0
+healing = 0
+charge = 0
+temp_status = false
+status_duration = 0
+animation = ""
+time = 0.0
+comment = ""
+
+[sub_resource type="Resource" id="Resource_ilpw5"]
+Resource = null
+resource_path = "res://abilities/warrior_abilities/second_wind.tres::Resource_ilpw5"
+script = ExtResource("1_c074e")
+step_type = 2
+conditions = Array[Resource("res://scripts/effect_condition.gd")]([])
+step_target = 1
+independent_hit = false
+hit_rate = 0
+damage = 0
+damage_type = 0
+healing = 0
+charge = 1
+temp_status = false
+status_duration = 0
+animation = ""
+time = 0.0
+comment = ""
+
+[resource]
+script = ExtResource("1_jys81")
+name = "Second Wind"
+description = "Restore a small amount of HP and energy to the user."
+energy_cost = 0
+hit = 999
+ability_target = 0
+effects = Array[ExtResource("1_c074e")]([SubResource("Resource_xlsqq"), SubResource("Resource_ilpw5")])

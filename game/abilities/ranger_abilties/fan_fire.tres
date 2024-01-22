@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=4 format=3 uid="uid://cyqx131qmpw8k"]
+
+[ext_resource type="Script" path="res://scripts/ability_step.gd" id="1_j87kw"]
+[ext_resource type="Script" path="res://scripts/ability.gd" id="1_mugqo"]
+
+[sub_resource type="Resource" id="Resource_nkfv6"]
+Resource = null
+resource_path = "res://abilities/ranger_abilties/fan_fire.tres::Resource_nkfv6"
+script = ExtResource("1_j87kw")
+step_type = 0
+conditions = Array[Resource("res://scripts/effect_condition.gd")]([])
+step_target = 1
+independent_hit = false
+hit_rate = 0
+damage = -5
+damage_type = 0
+healing = 0
+charge = 0
+temp_status = false
+status_duration = 0
+animation = ""
+time = 0.0
+comment = ""
+
+[resource]
+script = ExtResource("1_mugqo")
+name = "Fan Fire"
+description = "Fire one arrow at all enemies."
+energy_cost = 1
+hit = 100
+ability_target = 4
+effects = Array[ExtResource("1_j87kw")]([SubResource("Resource_nkfv6")])

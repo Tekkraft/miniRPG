@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="EnemyClass" load_steps=2 format=3 uid="uid://cdtwy01rpnoo4"]
+[gd_resource type="Resource" script_class="EnemyClass" load_steps=3 format=3 uid="uid://cdtwy01rpnoo4"]
 
 [ext_resource type="Script" path="res://scripts/enemy_class.gd" id="1_8eoi0"]
+[ext_resource type="Resource" uid="uid://3mkxwiley45u" path="res://abilities/enemy_abilities/wolf/bite.tres" id="2_d1qo5"]
 
 [resource]
 script = ExtResource("1_8eoi0")
 bonus_skills = Array[Resource("res://scripts/enemy_class_skill.gd")]([])
 ai_profile = ""
 name = "Wolf"
-skills = Array[Resource("res://scripts/ability.gd")]([])
+skills = Array[Resource("res://scripts/ability.gd")]([ExtResource("2_d1qo5")])

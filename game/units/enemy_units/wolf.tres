@@ -1,12 +1,14 @@
-[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3 uid="uid://bpb0rquy27onm"]
+[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://bpb0rquy27onm"]
 
 [ext_resource type="Script" path="res://scripts/enemy_data.gd" id="1_y17rl"]
+[ext_resource type="Resource" uid="uid://cdtwy01rpnoo4" path="res://classes/enemy_class/wolf_class.tres" id="2_hs3lr"]
 
 [resource]
 script = ExtResource("1_y17rl")
 spectrum_threshold = 5
 exp_yield = 25
 unit_name = "Wolf"
+unit_class = ExtResource("2_hs3lr")
 current_exp = 0
 current_level = 1
 max_hp = 80

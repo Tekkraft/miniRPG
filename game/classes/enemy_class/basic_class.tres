@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_54snq")
-bonus_skills = Array[Resource]([null, null])
+bonus_skills = Array[Resource("res://scripts/enemy_class_skill.gd")]([null, null])
+ai_profile = ""
 name = null
 skills = null

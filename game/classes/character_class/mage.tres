@@ -1,39 +1,12 @@
-[gd_resource type="Resource" script_class="CharacterClass" load_steps=6 format=3 uid="uid://cqlurajrd1abm"]
+[gd_resource type="Resource" script_class="CharacterClass" load_steps=5 format=3 uid="uid://cqlurajrd1abm"]
 
 [ext_resource type="Script" path="res://scripts/character_class.gd" id="1_h0c0a"]
-[ext_resource type="Script" path="res://scripts/ability_step.gd" id="2_uc1bi"]
-[ext_resource type="Script" path="res://scripts/ability.gd" id="3_y80p1"]
-
-[sub_resource type="Resource" id="Resource_almc7"]
-Resource = null
-resource_path = "res://classes/character_class/mage.tres::Resource_almc7"
-script = ExtResource("2_uc1bi")
-step_type = 0
-conditions = Array[Resource("res://scripts/effect_condition.gd")]([])
-step_target = 1
-independent_hit = false
-hit_rate = 0
-damage = 100
-damage_type = 1
-healing = 0
-charge = 0
-temp_status = false
-status_duration = 0
-animation = ""
-time = 0.0
-comment = ""
-
-[sub_resource type="Resource" id="Resource_tjhfj"]
-script = ExtResource("3_y80p1")
-name = "FIREBALL"
-description = ""
-energy_cost = 0
-hit = 999
-ability_target = 2
-effects = Array[ExtResource("2_uc1bi")]([SubResource("Resource_almc7")])
+[ext_resource type="Resource" uid="uid://4uemu5qpitu2" path="res://abilities/mage_abilities/fire_blast.tres" id="2_07pvc"]
+[ext_resource type="Resource" uid="uid://c6r4e558g1c6q" path="res://abilities/mage_abilities/fire_wall.tres" id="3_2qg3x"]
+[ext_resource type="Resource" uid="uid://yfxa08s51yre" path="res://abilities/mage_abilities/channel.tres" id="4_3rtfo"]
 
 [resource]
 script = ExtResource("1_h0c0a")
 test = 0
 name = "Mage"
-skills = Array[ExtResource("3_y80p1")]([SubResource("Resource_tjhfj")])
+skills = Array[Resource("res://scripts/ability.gd")]([ExtResource("2_07pvc"), ExtResource("3_2qg3x"), ExtResource("4_3rtfo")])

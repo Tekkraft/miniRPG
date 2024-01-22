@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CharacterClass" load_steps=6 format=3 uid="uid://ccpwo0l1l7vci"]
+
+[ext_resource type="Texture2D" uid="uid://drwkgkbenm52g" path="res://sprites/character_icons.png" id="1_ks1xp"]
+[ext_resource type="Script" path="res://scripts/character_class.gd" id="1_s1s07"]
+[ext_resource type="Resource" uid="uid://bgihgtkxt1ce5" path="res://abilities/thief_abilities/poison_bomb.tres" id="3_ss525"]
+[ext_resource type="Resource" uid="uid://chswhclpjcbrm" path="res://abilities/thief_abilities/backstab.tres" id="4_ucu5s"]
+[ext_resource type="Resource" uid="uid://wjlscc81r24m" path="res://abilities/thief_abilities/smoke_bomb.tres" id="5_7xycs"]
+
+[resource]
+script = ExtResource("1_s1s07")
+test = 0
+name = "Thief"
+icon = ExtResource("1_ks1xp")
+skills = Array[Resource("res://scripts/ability.gd")]([ExtResource("3_ss525"), ExtResource("4_ucu5s"), ExtResource("5_7xycs")])

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="EnemyClass" load_steps=4 format=3 uid="uid://nfhq6xgavtmw"]
+
+[ext_resource type="Script" path="res://scripts/enemy_class.gd" id="1_4mp7f"]
+[ext_resource type="Resource" uid="uid://3mkxwiley45u" path="res://abilities/enemy_abilities/wolf/bite.tres" id="2_pl2b2"]
+[ext_resource type="Resource" uid="uid://c671sn6kxoi6r" path="res://abilities/enemy_abilities/wolf/crunch.tres" id="3_5hu4e"]
+
+[resource]
+script = ExtResource("1_4mp7f")
+bonus_skills = Array[Resource("res://scripts/enemy_class_skill.gd")]([])
+ai_profile = ""
+name = "Dire Wolf"
+skills = Array[Resource("res://scripts/ability.gd")]([ExtResource("2_pl2b2"), ExtResource("3_5hu4e")])

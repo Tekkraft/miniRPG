@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=4 format=3 uid="uid://bab5n4s4yusep"]
+
+[ext_resource type="Script" path="res://scripts/ability_step.gd" id="1_5k8my"]
+[ext_resource type="Script" path="res://scripts/ability.gd" id="1_hx3q8"]
+
+[sub_resource type="Resource" id="Resource_tom1h"]
+Resource = null
+resource_path = "res://abilities/enemy_abilities/dragon/expunge.tres::Resource_tom1h"
+script = ExtResource("1_5k8my")
+step_type = 0
+conditions = Array[Resource("res://scripts/effect_condition.gd")]([])
+step_target = 1
+independent_hit = false
+hit_rate = 0
+damage = 99999
+damage_type = 1
+healing = 0
+charge = 0
+temp_status = false
+status_duration = 0
+animation = ""
+time = 0.0
+comment = ""
+
+[resource]
+script = ExtResource("1_hx3q8")
+name = "Expunge"
+description = "instantly kill someone"
+energy_cost = 10
+hit = 999
+ability_target = 2
+effects = Array[ExtResource("1_5k8my")]([SubResource("Resource_tom1h")])

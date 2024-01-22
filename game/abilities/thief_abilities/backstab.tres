@@ -1,0 +1,94 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=11 format=3 uid="uid://chswhclpjcbrm"]
+
+[ext_resource type="Script" path="res://scripts/ability.gd" id="1_53c6r"]
+[ext_resource type="Script" path="res://scripts/ability_step.gd" id="1_k00m7"]
+[ext_resource type="Script" path="res://scripts/effect_condition.gd" id="1_s7r4i"]
+[ext_resource type="Script" path="res://scripts/status_step.gd" id="3_nduke"]
+[ext_resource type="Script" path="res://scripts/status.gd" id="4_6pmse"]
+
+[sub_resource type="Resource" id="Resource_tlaq6"]
+Resource = null
+resource_path = "res://abilities/thief_abilities/backstab.tres::Resource_tlaq6"
+script = ExtResource("1_s7r4i")
+condition_type = 1
+check_user = false
+has_status = true
+statuses = Array[ExtResource("4_6pmse")]([])
+above_threshold = false
+hp_percent = 50
+
+[sub_resource type="Resource" id="Resource_nt087"]
+Resource = null
+resource_path = "res://abilities/thief_abilities/backstab.tres::Resource_nt087"
+script = ExtResource("3_nduke")
+timed_effect = 0
+stat_changes = {
+"AGI": 0,
+"DEF": 0,
+"DEX": 0,
+"INT": 0,
+"RES": 0,
+"STR": 0
+}
+calc_stat_changes = {
+"AVO": 0,
+"CRT": 0,
+"EVA": 0,
+"HIT": 0
+}
+damage_per_turn = 0
+healing_per_turn = 0
+
+[sub_resource type="Resource" id="Resource_ncv3e"]
+script = ExtResource("4_6pmse")
+status_name = "Backstab"
+status_description = ""
+effects = Array[ExtResource("3_nduke")]([SubResource("Resource_nt087")])
+
+[sub_resource type="Resource" id="Resource_tuh7s"]
+Resource = null
+resource_path = "res://abilities/thief_abilities/backstab.tres::Resource_tuh7s"
+script = ExtResource("1_k00m7")
+step_type = 3
+conditions = Array[ExtResource("1_s7r4i")]([SubResource("Resource_tlaq6")])
+step_target = 0
+independent_hit = false
+hit_rate = 0
+damage = 0
+damage_type = 0
+healing = 0
+charge = 0
+status = SubResource("Resource_ncv3e")
+temp_status = true
+status_duration = 0
+animation = ""
+time = 0.0
+comment = ""
+
+[sub_resource type="Resource" id="Resource_qg0gv"]
+Resource = null
+resource_path = "res://abilities/thief_abilities/backstab.tres::Resource_qg0gv"
+script = ExtResource("1_k00m7")
+step_type = 0
+conditions = Array[ExtResource("1_s7r4i")]([])
+step_target = 1
+independent_hit = false
+hit_rate = 0
+damage = 5
+damage_type = 0
+healing = 0
+charge = 0
+temp_status = false
+status_duration = 0
+animation = ""
+time = 0.0
+comment = ""
+
+[resource]
+script = ExtResource("1_53c6r")
+name = "Backstab"
+description = "Attack a target. Deals 4x damage if the target is below half health."
+energy_cost = 1
+hit = 100
+ability_target = 2
+effects = Array[ExtResource("1_k00m7")]([SubResource("Resource_tuh7s"), SubResource("Resource_qg0gv")])

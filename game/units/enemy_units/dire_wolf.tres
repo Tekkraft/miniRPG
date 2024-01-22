@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://dai2crtueuw6e"]
+
+[ext_resource type="Script" path="res://scripts/enemy_data.gd" id="1_bmgvw"]
+[ext_resource type="Resource" uid="uid://nfhq6xgavtmw" path="res://classes/enemy_class/dire_wolf_class.tres" id="2_g2whd"]
+
+[resource]
+script = ExtResource("1_bmgvw")
+spectrum_threshold = 3
+exp_yield = 40
+unit_name = "Dire Wolf"
+unit_class = ExtResource("2_g2whd")
+current_exp = 0
+current_level = 1
+max_hp = 80
+stat_dict = {
+"AGI": 12,
+"DEF": 11,
+"DEX": 11,
+"INT": 5,
+"RES": 7,
+"STR": 13
+}
+personal_growths_dict = {
+"AGI": 1,
+"DEF": 1,
+"DEX": 0,
+"INT": 0,
+"RES": 0,
+"STR": 2
+}

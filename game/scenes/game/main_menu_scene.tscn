@@ -1,11 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://bkts6f06ql88"]
+[gd_scene load_steps=6 format=3 uid="uid://bkts6f06ql88"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_dbvq5"]
 [ext_resource type="Resource" uid="uid://3sdnvop2qbdb" path="res://encounters/wolves.tres" id="2_wbj37"]
+[ext_resource type="Resource" uid="uid://c0u0e80ywu3tb" path="res://encounters/dire_wolves.tres" id="3_uge1t"]
+[ext_resource type="Resource" uid="uid://7fk8dludc1fp" path="res://encounters/elite_wolves.tres" id="4_3pvlu"]
+[ext_resource type="Resource" uid="uid://2n5m1jjjjsad" path="res://encounters/dragon.tres" id="5_55ckq"]
 
 [node name="MainMenuScene" type="Node2D"]
 script = ExtResource("1_dbvq5")
-encounter_table = Array[Resource("res://scripts/encounter.gd")]([ExtResource("2_wbj37")])
+encounter_table = Array[Resource("res://scripts/encounter.gd")]([ExtResource("2_wbj37"), ExtResource("3_uge1t"), ExtResource("4_3pvlu"), ExtResource("5_55ckq")])
 
 [node name="UILayer" type="CanvasLayer" parent="."]
 
@@ -36,7 +39,7 @@ offset_right = 417.0
 offset_bottom = 239.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 128
-text = "Proto-JRPG"
+text = "Mini RPG"
 horizontal_alignment = 1
 
 [node name="StartButton" type="Button" parent="UILayer/MainMenuUI"]

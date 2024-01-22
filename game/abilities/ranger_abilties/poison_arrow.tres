@@ -1,0 +1,53 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=6 format=3 uid="uid://dontuyjg1pscu"]
+
+[ext_resource type="Script" path="res://scripts/ability_step.gd" id="1_bkt4m"]
+[ext_resource type="Script" path="res://scripts/ability.gd" id="1_oekkm"]
+[ext_resource type="Resource" uid="uid://0bwgmubeviwe" path="res://statuses/poison.tres" id="2_ffmbb"]
+
+[sub_resource type="Resource" id="Resource_hxxsu"]
+Resource = null
+resource_path = "res://abilities/ranger_abilties/poison_arrow.tres::Resource_hxxsu"
+script = ExtResource("1_bkt4m")
+step_type = 0
+conditions = Array[Resource("res://scripts/effect_condition.gd")]([])
+step_target = 1
+independent_hit = false
+hit_rate = 0
+damage = -5
+damage_type = 0
+healing = 0
+charge = 0
+temp_status = false
+status_duration = 0
+animation = ""
+time = 0.0
+comment = ""
+
+[sub_resource type="Resource" id="Resource_n30tl"]
+Resource = null
+resource_path = "res://abilities/ranger_abilties/poison_arrow.tres::Resource_n30tl"
+script = ExtResource("1_bkt4m")
+step_type = 3
+conditions = Array[Resource("res://scripts/effect_condition.gd")]([])
+step_target = 1
+independent_hit = false
+hit_rate = 0
+damage = 0
+damage_type = 0
+healing = 0
+charge = 0
+status = ExtResource("2_ffmbb")
+temp_status = false
+status_duration = 3
+animation = ""
+time = 0.0
+comment = ""
+
+[resource]
+script = ExtResource("1_oekkm")
+name = "Poison Arrow"
+description = "Fire a poisoned arrow at a target."
+energy_cost = 2
+hit = 80
+ability_target = 2
+effects = Array[ExtResource("1_bkt4m")]([SubResource("Resource_hxxsu"), SubResource("Resource_n30tl")])

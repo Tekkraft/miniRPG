@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://cxstu0e8uqrwe"]
+
+[ext_resource type="Script" path="res://scripts/enemy_data.gd" id="1_wwyg3"]
+[ext_resource type="Resource" uid="uid://ba7lf560jd0ai" path="res://classes/enemy_class/dragon.tres" id="2_fcrbm"]
+
+[resource]
+script = ExtResource("1_wwyg3")
+spectrum_threshold = 1
+exp_yield = 100
+unit_name = "Dragon"
+unit_class = ExtResource("2_fcrbm")
+current_exp = 0
+current_level = 1
+max_hp = 1000
+stat_dict = {
+"AGI": 6,
+"DEF": 20,
+"DEX": 7,
+"INT": 18,
+"RES": 14,
+"STR": 15
+}
+personal_growths_dict = {
+"AGI": 0,
+"DEF": 2,
+"DEX": 0,
+"INT": 4,
+"RES": 1,
+"STR": 3
+}

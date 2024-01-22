@@ -1,0 +1,51 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=5 format=3 uid="uid://dienayqtpm216"]
+
+[ext_resource type="Script" path="res://scripts/ability.gd" id="1_127l2"]
+[ext_resource type="Script" path="res://scripts/ability_step.gd" id="1_op0mm"]
+
+[sub_resource type="Resource" id="Resource_uo5f4"]
+Resource = null
+resource_path = "res://abilities/enemy_abilities/dragon/fire_breath.tres::Resource_uo5f4"
+script = ExtResource("1_op0mm")
+step_type = 0
+conditions = Array[Resource("res://scripts/effect_condition.gd")]([])
+step_target = 1
+independent_hit = false
+hit_rate = 0
+damage = 15
+damage_type = 1
+healing = 0
+charge = 0
+temp_status = false
+status_duration = 0
+animation = ""
+time = 0.0
+comment = ""
+
+[sub_resource type="Resource" id="Resource_1f5cx"]
+Resource = null
+resource_path = "res://abilities/enemy_abilities/dragon/fire_breath.tres::Resource_1f5cx"
+script = ExtResource("1_op0mm")
+step_type = 2
+conditions = Array[Resource("res://scripts/effect_condition.gd")]([])
+step_target = 0
+independent_hit = false
+hit_rate = 0
+damage = 0
+damage_type = 0
+healing = 0
+charge = 1
+temp_status = false
+status_duration = 0
+animation = ""
+time = 0.0
+comment = ""
+
+[resource]
+script = ExtResource("1_127l2")
+name = "Fire Breath"
+description = ""
+energy_cost = 0
+hit = 80
+ability_target = 2
+effects = Array[ExtResource("1_op0mm")]([SubResource("Resource_uo5f4"), SubResource("Resource_1f5cx")])

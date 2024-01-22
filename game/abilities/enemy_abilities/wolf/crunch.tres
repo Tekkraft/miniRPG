@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=4 format=3 uid="uid://c671sn6kxoi6r"]
+
+[ext_resource type="Script" path="res://scripts/ability_step.gd" id="1_6y2y2"]
+[ext_resource type="Script" path="res://scripts/ability.gd" id="2_ackmj"]
+
+[sub_resource type="Resource" id="Resource_lgsgr"]
+Resource = null
+resource_path = "res://abilities/enemy_abilities/wolf/crunch.tres::Resource_lgsgr"
+script = ExtResource("1_6y2y2")
+step_type = 0
+conditions = Array[Resource("res://scripts/effect_condition.gd")]([])
+step_target = 1
+independent_hit = false
+hit_rate = 0
+damage = 20
+damage_type = 0
+healing = 0
+charge = 0
+temp_status = false
+status_duration = 0
+animation = ""
+time = 0.0
+comment = ""
+
+[resource]
+script = ExtResource("2_ackmj")
+name = "Crunch"
+description = "nom nom"
+energy_cost = 0
+hit = 80
+ability_target = 2
+effects = Array[ExtResource("1_6y2y2")]([SubResource("Resource_lgsgr")])

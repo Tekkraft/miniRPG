@@ -1,0 +1,51 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=5 format=3 uid="uid://cgacsld3wxetf"]
+
+[ext_resource type="Script" path="res://scripts/ability_step.gd" id="1_172b8"]
+[ext_resource type="Script" path="res://scripts/ability.gd" id="1_xa178"]
+
+[sub_resource type="Resource" id="Resource_g5lls"]
+Resource = null
+resource_path = "res://abilities/warrior_abilities/double_slash.tres::Resource_g5lls"
+script = ExtResource("1_172b8")
+step_type = 0
+conditions = Array[Resource("res://scripts/effect_condition.gd")]([])
+step_target = 1
+independent_hit = false
+hit_rate = 0
+damage = -5
+damage_type = 0
+healing = 0
+charge = 0
+temp_status = false
+status_duration = 0
+animation = ""
+time = 0.0
+comment = ""
+
+[sub_resource type="Resource" id="Resource_ojlxc"]
+Resource = null
+resource_path = "res://abilities/warrior_abilities/double_slash.tres::Resource_ojlxc"
+script = ExtResource("1_172b8")
+step_type = 0
+conditions = Array[Resource("res://scripts/effect_condition.gd")]([])
+step_target = 1
+independent_hit = false
+hit_rate = 0
+damage = -5
+damage_type = 0
+healing = 0
+charge = 0
+temp_status = false
+status_duration = 0
+animation = ""
+time = 0.0
+comment = ""
+
+[resource]
+script = ExtResource("1_xa178")
+name = "Double Slash"
+description = "Slash at an enemy twice."
+energy_cost = 1
+hit = 80
+ability_target = 2
+effects = Array[ExtResource("1_172b8")]([SubResource("Resource_g5lls"), SubResource("Resource_ojlxc")])

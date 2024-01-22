@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EnemyClass" load_steps=6 format=3 uid="uid://ba7lf560jd0ai"]
+
+[ext_resource type="Script" path="res://scripts/enemy_class.gd" id="1_w3jiw"]
+[ext_resource type="Resource" uid="uid://cro77iwe250l" path="res://abilities/enemy_abilities/dragon/claw.tres" id="2_wsfmy"]
+[ext_resource type="Resource" uid="uid://dienayqtpm216" path="res://abilities/enemy_abilities/dragon/fire_breath.tres" id="3_8oc0c"]
+[ext_resource type="Resource" uid="uid://bab5n4s4yusep" path="res://abilities/enemy_abilities/dragon/expunge.tres" id="4_1vhc6"]
+[ext_resource type="Resource" uid="uid://dfa2632ntfmui" path="res://abilities/enemy_abilities/dragon/roar.tres" id="5_1ow3v"]
+
+[resource]
+script = ExtResource("1_w3jiw")
+bonus_skills = Array[Resource("res://scripts/enemy_class_skill.gd")]([])
+ai_profile = ""
+name = "Dragon"
+skills = Array[Resource("res://scripts/ability.gd")]([ExtResource("2_wsfmy"), ExtResource("3_8oc0c"), ExtResource("4_1vhc6"), ExtResource("5_1ow3v")])
